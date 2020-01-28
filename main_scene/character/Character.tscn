@@ -1,13 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://main_scene/character/Character.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32.8348, 7.86906 )
 
 [node name="Character" type="Node2D"]
 scale = Vector2( 0.342264, 0.342264 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ],
-"_edit_vertical_guides_": [ 50.2085 ]
+"_edit_vertical_guides_": [  ]
 }
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -42,6 +45,12 @@ margin_top = -8.0
 margin_right = 65.0
 margin_bottom = 7.0
 color = Color( 0, 0, 0, 1 )
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Node2D/rect3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/rect3/RigidBody2D"]
+position = Vector2( 32.6599, -0.512596 )
+shape = SubResource( 1 )
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
 

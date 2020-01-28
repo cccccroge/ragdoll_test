@@ -34,8 +34,8 @@ character_stall={
 
 [layer_names]
 
-2d_physics/layer_1="enviroment"
-2d_physics/layer_2="player"
+2d_physics/layer_1="player"
+2d_physics/layer_2="others"
 
 [rendering]
 

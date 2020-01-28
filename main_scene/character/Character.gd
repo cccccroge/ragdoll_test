@@ -1,41 +1,47 @@
-extends Position2D
+extends Node2D
 
-onready var animatePlayer = $AnimationPlayer
-onready var physicPolygons = $physicPolygons
-onready var torsoRigidBody = $physicPolygons/torso
+onready var skeleton = $Skeleton2D
+var segments = []
 
 func _ready():
-	animatePlayer.playback_active = true
-	animatePlayer.play("Idle")
+	# obtain all IK segments	
+	for child in skeleton.get_children():
+		segments.push_front(child)
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("character_move_right"):
-		#turn_rigid(false, null)
-		animatePlayer.play("Walk_forward")
-		pass
-	elif Input.is_action_just_pressed("character_stall"):
-		#turn_rigid(true, null)
-		animatePlayer.play("Idle")
+	move_right_procedural()
+	
+#	if Input.is_action_just_pressed("character_move_right"):
+#		move_right_procedural()
+#	elif Input.is_action_pressed("character_stall"):
+#		idle_procedural()
 
 
-func turn_rigid(on, root):
-	# neglect root for now, get all rigidBody
-	var rigidBodies = get_all_rigidBody(Array(), physicPolygons)
+func move_right_procedural():
+	# record previous info
+	var root_loc = segments[-1].get_global_position()
+	
+	# follow target for each segment
+	var target := get_global_mouse_position()
+	for seg in segments:
+		seg.look_at(target)
+		
+		var offset := Vector2(cos(seg.get_global_rotation()), 
+			sin(seg.get_global_rotation()))
+		offset.x *= seg.get_default_length() * seg.get_global_scale().x
+		offset.y *= seg.get_default_length() * seg.get_global_scale().y
+		var target_start = target - offset
+		seg.set_global_position(target_start)
 
-	if on:
-		for rigidBody in rigidBodies:
-			rigidBody.set("Mode", "Rigid")
-	else:
-		for rigidBody in rigidBodies:
-			rigidBody.set("Mode", "Kinematic")
+		target = seg.get_global_position()
+	
+	# move back to fix location
+	var offset = root_loc - segments[-1].get_global_position()
+	for seg in segments:
+		seg.global_translate(offset)
 
 
-func get_all_rigidBody(bodies, target):
-	for child in target.get_children():
-		if child is RigidBody2D:
-			bodies.append(child)
-		get_all_rigidBody(bodies, child)
-
-	return bodies
-
+func idle_procedural():
+	pass
+	

@@ -28,4 +28,4 @@ position = Vector2( 577.162, 91.1091 )
 shape = SubResource( 1 )
 
 [node name="Character_2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 338.314, 411.619 )
+position = Vector2( 338.314, 327.763 )

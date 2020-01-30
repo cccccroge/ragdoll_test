@@ -2,48 +2,95 @@ extends RigidBody2D
 
 
 export var velocity = 5
-export var anim_ratio = 0.05
+
+export var anim_ratio = 0.1
 var physics_ratio = 1 - anim_ratio
 
 onready var bone_base = $Skeleton2D/Base
-onready var bone_arm_upper = $Skeleton2D/Base/Seg1
-onready var bone_arm_lower = $Skeleton2D/Base/Seg1/Seg2
 onready var bone_head = $Skeleton2D/Base/Head
+onready var bone_seg1 = $Skeleton2D/Base/Seg1
+onready var bone_seg2 = $Skeleton2D/Base/Seg1/Seg2
+onready var bone_seg3 = $Skeleton2D/Base/Seg3
+onready var bone_seg4 = $Skeleton2D/Base/Seg3/Seg4
+onready var bone_seg5 = $Skeleton2D/Base/Seg5
+onready var bone_seg6 = $Skeleton2D/Base/Seg5/Seg6
+onready var bone_seg7 = $Skeleton2D/Base/Seg7
+onready var bone_seg8 = $Skeleton2D/Base/Seg7/Seg8
 
 onready var rigid_base = $Base
-onready var rigid_arm_upper = $Base/Seg1
-onready var rigid_arm_lower = $Base/Seg1/Seg2
 onready var rigid_head = $Base/Head
+onready var rigid_seg1 = $Base/Seg1
+onready var rigid_seg2 = $Base/Seg1/Seg2
+onready var rigid_seg3 = $Base/Seg3
+onready var rigid_seg4 = $Base/Seg3/Seg4
+onready var rigid_seg5 = $Base/Seg5
+onready var rigid_seg6 = $Base/Seg5/Seg6
+onready var rigid_seg7 = $Base/Seg7
+onready var rigid_seg8 = $Base/Seg7/Seg8
+
+var bone_list := []
+var rigid_list := []
+var rot_offset_list := []	# offset to transform from bone-coord to rigid-coord
+							# TODO: it's tedious, need refactoring
+
+onready var anim_player = $AnimationPlayer
+
+
+func _ready():
+	# initialize three lists
+	bone_list.append(bone_base)
+	bone_list.append(bone_head)
+	bone_list.append(bone_seg1)
+	bone_list.append(bone_seg2)
+	bone_list.append(bone_seg3)
+	bone_list.append(bone_seg4)
+	bone_list.append(bone_seg5)
+	bone_list.append(bone_seg6)
+	bone_list.append(bone_seg7)
+	bone_list.append(bone_seg8)
+	
+	rigid_list.append(rigid_base)
+	rigid_list.append(rigid_head)
+	rigid_list.append(rigid_seg1)
+	rigid_list.append(rigid_seg2)
+	rigid_list.append(rigid_seg3)
+	rigid_list.append(rigid_seg4)
+	rigid_list.append(rigid_seg5)
+	rigid_list.append(rigid_seg6)
+	rigid_list.append(rigid_seg7)
+	rigid_list.append(rigid_seg8)
+	
+	assert(bone_list.size() == rigid_list.size())
+	
+	for i in range(bone_list.size()):
+		rot_offset_list.append(rigid_list[i].get_rotation()\
+			 - bone_list[i].get_rotation())
 
 
 func _physics_process(delta):
-	# blend with animation
-	var physics
-	var animation
-
-	physics = rigid_base.get_rotation()
-	animation = bone_base.get_rotation() + deg2rad(0 - (-90))
-	rigid_base.set_rotation(physics * physics_ratio + animation * anim_ratio)
-	
-	physics = rigid_head.get_rotation()
-	animation = bone_head.get_rotation() + deg2rad(0 - 0)
-	rigid_head.set_rotation(physics * physics_ratio + animation * anim_ratio)
-	
-	physics = rigid_arm_upper.get_rotation()
-	animation = bone_arm_upper.get_rotation() + deg2rad(-25.2 - 154.9)
-	rigid_arm_upper.set_rotation(physics * physics_ratio + animation * anim_ratio)
-	
-	physics = rigid_arm_lower.get_rotation()
-	animation = bone_arm_lower.get_rotation() + deg2rad(0 - 0)
-	rigid_arm_lower.set_rotation(physics * physics_ratio + animation * anim_ratio)
+	# blend rigid's rotation with animation
+	for i in range(bone_list.size()):
+		var physics = rigid_list[i].get_rotation()
+		var animation = bone_list[i].get_rotation() + rot_offset_list[i]
+		rigid_list[i].set_rotation(physics * physics_ratio + animation * anim_ratio)
 
 
 func _integrate_forces(state):
 	var xform = state.get_transform()
+	
+	anim_ratio = 0.1
+	
 	if Input.is_action_pressed("character_move_right"):
 		xform.origin.x += velocity
+		anim_player.play("Run")
 	elif Input.is_action_pressed("character_move_left"):
 		xform.origin.x -= velocity
+		anim_player.play("Run")
+	else:
+		#anim_player.play("Run")
+		#anim_player.play("Idle")
+		anim_player.stop()
+		anim_ratio = 0
 	
 	state.set_transform(xform)
 

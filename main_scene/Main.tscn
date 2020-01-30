@@ -29,4 +29,3 @@ shape = SubResource( 1 )
 
 [node name="Character_3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 382.809, 412.172 )
-velocity = 5

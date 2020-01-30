@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://main_scene/character/Character_2.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main_scene/character/Character_3.tscn" type="PackedScene" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1540.59, 91.3183 )
@@ -27,5 +27,6 @@ color = Color( 0.176471, 0.572549, 0.176471, 1 )
 position = Vector2( 577.162, 91.1091 )
 shape = SubResource( 1 )
 
-[node name="Character_2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 338.314, 327.763 )
+[node name="Character_3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 382.809, 412.172 )
+velocity = 5

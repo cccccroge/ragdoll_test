@@ -3,8 +3,9 @@ extends RigidBody2D
 
 export var velocity = 5
 
-export var anim_ratio = 0.1
+export var anim_ratio = 0.05
 var physics_ratio = 1 - anim_ratio
+var isBlend := true
 
 onready var bone_base = $Skeleton2D/Base
 onready var bone_head = $Skeleton2D/Base/Head
@@ -68,6 +69,9 @@ func _ready():
 
 
 func _physics_process(delta):
+	if not isBlend:
+		return
+	
 	# blend rigid's rotation with animation
 	for i in range(bone_list.size()):
 		var physics = rigid_list[i].get_rotation()
@@ -78,19 +82,20 @@ func _physics_process(delta):
 func _integrate_forces(state):
 	var xform = state.get_transform()
 	
-	anim_ratio = 0.1
-	
 	if Input.is_action_pressed("character_move_right"):
 		xform.origin.x += velocity
+		isBlend = true
 		anim_player.play("Run")
 	elif Input.is_action_pressed("character_move_left"):
 		xform.origin.x -= velocity
+		isBlend = true
 		anim_player.play("Run")
 	else:
 		#anim_player.play("Run")
-		#anim_player.play("Idle")
-		anim_player.stop()
-		anim_ratio = 0
+		anim_player.play("Idle")
+		#anim_player.stop()
+		#isBlend = false
+		pass
 	
 	state.set_transform(xform)
 

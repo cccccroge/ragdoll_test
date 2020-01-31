@@ -1,16 +1,16 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://main_scene/character/Character_3.gd" type="Script" id=1]
 [ext_resource path="res://main_scene/character/physicsmaterial.tres" type="PhysicsMaterial" id=2]
+[ext_resource path="res://assets/huaji.png" type="Texture" id=3]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 28.3267
-height = 36.8956
+[sub_resource type="PhysicsMaterial" id=11]
+
+[sub_resource type="CircleShape2D" id=13]
+radius = 36.1464
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 38.9891, 64.5553 )
-
-[sub_resource type="NoiseTexture" id=3]
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 32.5832
@@ -31,7 +31,7 @@ height = 11.6683
 radius = 10.2248
 height = 36.9816
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=12]
 resource_name = "Idle"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Skeleton2D/Base/Seg1/Seg2:rotation_degrees")
@@ -230,15 +230,16 @@ tracks/7/keys = {
 }
 
 [node name="Character_3" type="RigidBody2D"]
-collision_mask = 2
-mass = 5.0
-can_sleep = false
+collision_mask = 4
+physics_material_override = SubResource( 11 )
+gravity_scale = 3.0
 script = ExtResource( 1 )
+SPEED = 10
+JUMP_SPEED = 250
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -30.1104 )
-rotation = -1.57079
-shape = SubResource( 1 )
+position = Vector2( 0, -36.0137 )
+shape = SubResource( 13 )
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
 position = Vector2( 0, -102.385 )
@@ -331,10 +332,10 @@ __meta__ = {
 
 [node name="Base" type="RigidBody2D" parent="."]
 position = Vector2( 0, -102.385 )
-collision_mask = 2
+collision_mask = 4
 mode = 3
 physics_material_override = ExtResource( 2 )
-gravity_scale = 8.0
+gravity_scale = 10.0
 
 [node name="ColorRect" type="ColorRect" parent="Base"]
 margin_left = -38.0
@@ -377,17 +378,16 @@ node_b = NodePath("../Seg7")
 
 [node name="Head" type="RigidBody2D" parent="Base"]
 position = Vector2( 0, -130.116 )
-collision_mask = 2
+collision_mask = 4
 physics_material_override = ExtResource( 2 )
-gravity_scale = 8.0
+gravity_scale = 10.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Base/Head"]
-position = Vector2( -110.682, 78.6595 )
-rotation = -1.44158
-scale = Vector2( 1.09229, 1.09229 )
-texture = SubResource( 3 )
-polygon = PoolVector2Array( 101.293, 114.655, 87.069, 100.862, 84.0517, 75, 99.569, 60.3448, 124.569, 58.6207, 140.086, 73.2759, 141.81, 99.1379, 130.172, 113.362 )
-uv = PoolVector2Array( 103.448, 110.776, 85.7759, 101.293, 84.0517, 75, 105.172, 58.6207, 129.741, 59.0517, 141.379, 73.2759, 143.103, 98.2759, 134.914, 110.776 )
+position = Vector2( -37.788, -69.1865 )
+scale = Vector2( 0.190851, 0.190851 )
+texture = ExtResource( 3 )
+polygon = PoolVector2Array( 82.2368, 24.3421, 11.8421, 101.974, 6.57895, 205.263, 46.0526, 315.789, 128.947, 382.895, 250, 383.553, 352.632, 342.105, 407.237, 232.237, 399.342, 134.868, 346.711, 40.1316, 255.263, 5.26316, 151.316, 5.26316 )
+uv = PoolVector2Array( 82.2368, 24.3421, 11.8421, 101.974, 6.57895, 205.263, 46.0526, 315.789, 128.947, 382.895, 250, 383.553, 352.632, 342.105, 407.237, 232.237, 399.342, 134.868, 346.711, 40.1316, 255.263, 5.26316, 151.316, 5.26316 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Base/Head"]
 position = Vector2( 0, -31.9713 )
@@ -396,9 +396,9 @@ shape = SubResource( 4 )
 [node name="Seg1" type="RigidBody2D" parent="Base"]
 position = Vector2( 39.3719, -121.199 )
 rotation = -0.439294
-collision_mask = 2
+collision_mask = 4
 physics_material_override = ExtResource( 2 )
-gravity_scale = 8.0
+gravity_scale = 10.0
 
 [node name="ColorRect" type="ColorRect" parent="Base/Seg1"]
 margin_left = 9.02853
@@ -422,9 +422,9 @@ node_b = NodePath("../Seg2")
 
 [node name="Seg2" type="RigidBody2D" parent="Base/Seg1"]
 position = Vector2( -0.229141, 50.1618 )
-collision_mask = 2
+collision_mask = 4
 physics_material_override = ExtResource( 2 )
-gravity_scale = 8.0
+gravity_scale = 10.0
 
 [node name="ColorRect" type="ColorRect" parent="Base/Seg1/Seg2"]
 margin_left = 8.20906
@@ -443,9 +443,9 @@ shape = SubResource( 6 )
 [node name="Seg3" type="RigidBody2D" parent="Base"]
 position = Vector2( -38.4041, -121.199 )
 rotation = 0.428662
-collision_mask = 2
+collision_mask = 4
 physics_material_override = ExtResource( 2 )
-gravity_scale = 8.0
+gravity_scale = 10.0
 
 [node name="ColorRect" type="ColorRect" parent="Base/Seg3"]
 margin_left = 9.02853
@@ -469,9 +469,9 @@ node_b = NodePath("../Seg4")
 
 [node name="Seg4" type="RigidBody2D" parent="Base/Seg3"]
 position = Vector2( -0.229141, 50.1618 )
-collision_mask = 2
+collision_mask = 4
 physics_material_override = ExtResource( 2 )
-gravity_scale = 8.0
+gravity_scale = 10.0
 
 [node name="ColorRect" type="ColorRect" parent="Base/Seg3/Seg4"]
 margin_left = 8.20906
@@ -490,9 +490,9 @@ shape = SubResource( 7 )
 [node name="Seg5" type="RigidBody2D" parent="Base"]
 position = Vector2( 21.8672, -10.6282 )
 rotation = -0.0850256
-collision_mask = 2
+collision_mask = 4
 physics_material_override = ExtResource( 2 )
-gravity_scale = 8.0
+gravity_scale = 10.0
 
 [node name="ColorRect" type="ColorRect" parent="Base/Seg5"]
 margin_left = 11.0
@@ -509,15 +509,15 @@ position = Vector2( 0.516699, 31.6041 )
 shape = SubResource( 5 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Base/Seg5"]
-position = Vector2( 0.0903797, 57.9865 )
+position = Vector2( 0.274391, 58.1175 )
 node_a = NodePath("..")
 node_b = NodePath("../Seg6")
 
 [node name="Seg6" type="RigidBody2D" parent="Base/Seg5"]
-position = Vector2( 0.1201, 58.1148 )
-collision_mask = 2
+position = Vector2( 0.236206, 61.0654 )
+collision_mask = 4
 physics_material_override = ExtResource( 2 )
-gravity_scale = 8.0
+gravity_scale = 10.0
 
 [node name="ColorRect" type="ColorRect" parent="Base/Seg5/Seg6"]
 margin_left = 10.4782
@@ -530,15 +530,15 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Base/Seg5/Seg6"]
-position = Vector2( 0.483715, 24.8001 )
+position = Vector2( 0.465752, 23.5733 )
 shape = SubResource( 8 )
 
 [node name="Seg7" type="RigidBody2D" parent="Base"]
 position = Vector2( -24.1119, -10.6282 )
 rotation = 0.0346581
-collision_mask = 2
+collision_mask = 4
 physics_material_override = ExtResource( 2 )
-gravity_scale = 8.0
+gravity_scale = 10.0
 
 [node name="ColorRect" type="ColorRect" parent="Base/Seg7"]
 margin_left = 11.0
@@ -555,15 +555,15 @@ position = Vector2( 0.516699, 31.6041 )
 shape = SubResource( 5 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Base/Seg7"]
-position = Vector2( 0.49259, 58.0023 )
+position = Vector2( 0.62167, 58.0681 )
 node_a = NodePath("..")
 node_b = NodePath("../Seg8")
 
 [node name="Seg8" type="RigidBody2D" parent="Base/Seg7"]
-position = Vector2( 0.568945, 58.0037 )
-collision_mask = 2
+position = Vector2( 0.678938, 61.1761 )
+collision_mask = 4
 physics_material_override = ExtResource( 2 )
-gravity_scale = 8.0
+gravity_scale = 10.0
 
 [node name="ColorRect" type="ColorRect" parent="Base/Seg7/Seg8"]
 margin_left = 10.0183
@@ -576,11 +576,11 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Base/Seg7/Seg8"]
-position = Vector2( -0.0470009, 25.4485 )
+position = Vector2( -0.0180607, 22.76 )
 shape = SubResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
 playback_process_mode = 0
-anims/Idle = SubResource( 9 )
+anims/Idle = SubResource( 12 )
 anims/Run = SubResource( 10 )

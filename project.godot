@@ -39,8 +39,9 @@ character_move_up={
 
 [layer_names]
 
-2d_physics/layer_1="player"
-2d_physics/layer_2="others"
+2d_physics/layer_1="player_rigid_parts"
+2d_physics/layer_2="player_controller"
+2d_physics/layer_3="objests"
 
 [physics]
 

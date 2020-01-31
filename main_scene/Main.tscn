@@ -22,6 +22,8 @@ __meta__ = {
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2( 0.373016, 412.972 )
+collision_layer = 4
+collision_mask = 7
 
 [node name="ColorRect" type="ColorRect" parent="Ground"]
 margin_left = -955.0
@@ -39,6 +41,8 @@ position = Vector2( 382.809, 412.172 )
 [node name="Obstacle" type="RigidBody2D" parent="."]
 position = Vector2( 758.291, 335.643 )
 rotation = 0.206691
+collision_layer = 4
+collision_mask = 5
 
 [node name="ColorRect" type="ColorRect" parent="Obstacle"]
 margin_left = -39.0
@@ -55,6 +59,8 @@ shape = SubResource( 2 )
 [node name="Obstacle2" type="RigidBody2D" parent="."]
 position = Vector2( 842.268, 263.329 )
 rotation = -0.275744
+collision_layer = 4
+collision_mask = 5
 mass = 5.0
 continuous_cd = 2
 
@@ -73,6 +79,8 @@ shape = SubResource( 2 )
 [node name="Obstacle3" type="RigidBody2D" parent="."]
 position = Vector2( 661.074, 248.642 )
 rotation = -1.73327
+collision_layer = 4
+collision_mask = 5
 mass = 5.0
 
 [node name="ColorRect" type="ColorRect" parent="Obstacle3"]
@@ -90,6 +98,8 @@ shape = SubResource( 2 )
 [node name="Obstacle4" type="RigidBody2D" parent="."]
 position = Vector2( 844.601, 139.695 )
 rotation = -1.26108
+collision_layer = 4
+collision_mask = 5
 mass = 5.0
 
 [node name="ColorRect" type="ColorRect" parent="Obstacle4"]
@@ -107,6 +117,8 @@ shape = SubResource( 2 )
 [node name="Obstacle5" type="RigidBody2D" parent="."]
 position = Vector2( 702.836, 92.4402 )
 rotation = -1.26108
+collision_layer = 4
+collision_mask = 5
 mass = 5.0
 linear_velocity = Vector2( -250, 0 )
 

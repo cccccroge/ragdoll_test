@@ -108,3 +108,7 @@ func _integrate_forces(state):
 	
 	apply_impulse(Vector2(), f)
 
+
+
+func _on_Button_pressed():
+	print("YOYOYO")

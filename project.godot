@@ -19,6 +19,15 @@ config/name="ragdoll_test"
 run/main_scene="res://main_scene/Main.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+settings/stdout/print_fps=true
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
 [input]
 
 character_move_right={
@@ -49,4 +58,6 @@ character_move_up={
 
 [rendering]
 
+quality/filters/use_nearest_mipmap_filter=true
+quality/filters/msaa=3
 environment/default_environment="res://default_env.tres"

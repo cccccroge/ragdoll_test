@@ -1,135 +1,113 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://main_scene/character/Character_3.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main_scene/obstacles/Box.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1540.59, 91.3183 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 39.1134, 40.5828 )
-
 [node name="Main" type="Node2D"]
 
-[node name="Background" type="ColorRect" parent="."]
-margin_left = -980.0
-margin_top = -699.0
-margin_right = 2151.0
-margin_bottom = 604.0
-color = Color( 0.580392, 0.8, 0.776471, 1 )
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Ground" type="StaticBody2D" parent="Ground"]
+position = Vector2( 215.166, 927.282 )
+collision_layer = 4
+collision_mask = 7
+
+[node name="ColorRect" type="ColorRect" parent="Ground/Ground"]
+margin_left = -955.0
+margin_right = 2104.0
+margin_bottom = 469.0
+color = Color( 0.72549, 0.784314, 0.784314, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Ground" type="StaticBody2D" parent="."]
-position = Vector2( 0.373016, 412.972 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Ground"]
+visible = false
+position = Vector2( 577.162, 91.1091 )
+shape = SubResource( 1 )
+
+[node name="Ground2" type="StaticBody2D" parent="Ground"]
+position = Vector2( 3078.82, 927.282 )
 collision_layer = 4
 collision_mask = 7
 
-[node name="ColorRect" type="ColorRect" parent="Ground"]
+[node name="ColorRect" type="ColorRect" parent="Ground/Ground2"]
 margin_left = -955.0
 margin_right = 2104.0
 margin_bottom = 469.0
-color = Color( 0.176471, 0.572549, 0.176471, 1 )
+color = Color( 0.72549, 0.784314, 0.784314, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Ground2"]
+visible = false
+position = Vector2( 577.162, 91.1091 )
+shape = SubResource( 1 )
+
+[node name="Ground3" type="StaticBody2D" parent="Ground"]
+position = Vector2( -2602.64, 927.282 )
+collision_layer = 4
+collision_mask = 7
+
+[node name="ColorRect" type="ColorRect" parent="Ground/Ground3"]
+margin_left = -955.0
+margin_right = 2104.0
+margin_bottom = 469.0
+color = Color( 0.72549, 0.784314, 0.784314, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Ground3"]
+visible = false
+position = Vector2( 577.162, 91.1091 )
+shape = SubResource( 1 )
+
+[node name="Ground4" type="StaticBody2D" parent="Ground"]
+position = Vector2( 5901.02, 927.282 )
+collision_layer = 4
+collision_mask = 7
+
+[node name="ColorRect" type="ColorRect" parent="Ground/Ground4"]
+margin_left = -955.0
+margin_right = 2104.0
+margin_bottom = 469.0
+color = Color( 0.72549, 0.784314, 0.784314, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Ground4"]
+visible = false
 position = Vector2( 577.162, 91.1091 )
 shape = SubResource( 1 )
 
 [node name="Character_3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 382.809, 412.172 )
+position = Vector2( 403.566, 875.777 )
 
-[node name="Obstacle" type="RigidBody2D" parent="."]
-position = Vector2( 758.291, 335.643 )
-rotation = 0.206691
-collision_layer = 4
-collision_mask = 5
+[node name="Camera2D" type="Camera2D" parent="Character_3"]
+position = Vector2( -374.548, -836.291 )
+offset = Vector2( -525, -50.84 )
+anchor_mode = 0
+current = true
+limit_smoothed = true
+smoothing_enabled = true
+drag_margin_top = 0.15
+drag_margin_bottom = 0.8
+editor_draw_drag_margin = true
 
-[node name="ColorRect" type="ColorRect" parent="Obstacle"]
-margin_left = -39.0
-margin_top = -40.0
-margin_right = 39.0
-margin_bottom = 41.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Obstacle" parent="." instance=ExtResource( 2 )]
+position = Vector2( 683.038, 118.652 )
+rotation = -0.617611
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle"]
-shape = SubResource( 2 )
+[node name="Obstacle2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 817.775, 123.915 )
+rotation = -0.00823909
 
-[node name="Obstacle2" type="RigidBody2D" parent="."]
-position = Vector2( 842.268, 263.329 )
-rotation = -0.275744
-collision_layer = 4
-collision_mask = 5
-mass = 5.0
-continuous_cd = 2
-
-[node name="ColorRect" type="ColorRect" parent="Obstacle2"]
-margin_left = -39.0
-margin_top = -40.0
-margin_right = 39.0
-margin_bottom = 41.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle2"]
-shape = SubResource( 2 )
-
-[node name="Obstacle3" type="RigidBody2D" parent="."]
-position = Vector2( 661.074, 248.642 )
-rotation = -1.73327
-collision_layer = 4
-collision_mask = 5
-mass = 5.0
-
-[node name="ColorRect" type="ColorRect" parent="Obstacle3"]
-margin_left = -39.0
-margin_top = -40.0
-margin_right = 39.0
-margin_bottom = 41.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle3"]
-shape = SubResource( 2 )
-
-[node name="Obstacle4" type="RigidBody2D" parent="."]
-position = Vector2( 844.601, 139.695 )
-rotation = -1.26108
-collision_layer = 4
-collision_mask = 5
-mass = 5.0
-
-[node name="ColorRect" type="ColorRect" parent="Obstacle4"]
-margin_left = -39.0
-margin_top = -40.0
-margin_right = 39.0
-margin_bottom = 41.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle4"]
-shape = SubResource( 2 )
-
-[node name="Obstacle5" type="RigidBody2D" parent="."]
-position = Vector2( 702.836, 92.4402 )
-rotation = -1.26108
-collision_layer = 4
-collision_mask = 5
-mass = 5.0
-linear_velocity = Vector2( -250, 0 )
-
-[node name="ColorRect" type="ColorRect" parent="Obstacle5"]
-margin_left = -39.0
-margin_top = -40.0
-margin_right = 39.0
-margin_bottom = 41.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle5"]
-shape = SubResource( 2 )
+[node name="Obstacle3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 736.722, 236.547 )
+rotation = -0.564795

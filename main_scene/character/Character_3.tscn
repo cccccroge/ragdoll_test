@@ -1,15 +1,15 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://main_scene/character/Character_3.gd" type="Script" id=1]
 [ext_resource path="res://main_scene/character/physicsmaterial.tres" type="PhysicsMaterial" id=2]
 [ext_resource path="res://assets/huaji.png" type="Texture" id=3]
 
-[sub_resource type="PhysicsMaterial" id=11]
+[sub_resource type="PhysicsMaterial" id=1]
 
-[sub_resource type="CircleShape2D" id=13]
+[sub_resource type="CircleShape2D" id=2]
 radius = 36.1464
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 38.9891, 64.5553 )
 
 [sub_resource type="CircleShape2D" id=4]
@@ -31,8 +31,119 @@ height = 11.6683
 radius = 10.2248
 height = 36.9816
 
-[sub_resource type="Animation" id=12]
-resource_name = "Idle"
+[sub_resource type="Animation" id=9]
+resource_name = "Crawl"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton2D/Base/Seg1/Seg2:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -0.196751 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton2D/Base/Seg1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 154.685 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Skeleton2D/Base/Seg7/Seg8:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -0.221749 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Skeleton2D/Base/Seg7:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -178.028 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Skeleton2D/Base/Seg3/Seg4:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -0.709472 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Skeleton2D/Base/Seg3:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -155.545 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Skeleton2D/Base/Seg5/Seg6:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -0.560439 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Skeleton2D/Base/Seg5:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 175.069 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Skeleton2D/Base/Head:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Skeleton2D/Base/Seg1/Seg2:rotation_degrees")
 tracks/0/interp = 1
@@ -130,7 +241,7 @@ tracks/7/keys = {
 "values": [ 204.455 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Skeleton2D/Base/Seg1/Seg2:rotation_degrees")
@@ -231,7 +342,7 @@ tracks/7/keys = {
 
 [node name="Character_3" type="RigidBody2D"]
 collision_mask = 4
-physics_material_override = SubResource( 11 )
+physics_material_override = SubResource( 1 )
 gravity_scale = 3.0
 script = ExtResource( 1 )
 SPEED = 10
@@ -239,7 +350,7 @@ JUMP_SPEED = 250
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -36.0137 )
-shape = SubResource( 13 )
+shape = SubResource( 2 )
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
 position = Vector2( 0, -102.385 )
@@ -266,7 +377,7 @@ __meta__ = {
 
 [node name="Seg2" type="Bone2D" parent="Skeleton2D/Base/Seg1"]
 position = Vector2( 47.3813, 0.000602722 )
-rotation = -0.00343394
+rotation = -0.00343395
 rest = Transform2D( 0.999994, -0.00343394, 0.00343394, 0.999994, 47.3813, 0.000602722 )
 default_length = 25.0
 __meta__ = {
@@ -275,7 +386,7 @@ __meta__ = {
 
 [node name="Seg3" type="Bone2D" parent="Skeleton2D/Base"]
 position = Vector2( 121.279, -38.411 )
-rotation = 3.56841
+rotation = -2.71477
 rest = Transform2D( -0.910284, -0.413985, 0.413985, -0.910284, 121.279, -38.411 )
 default_length = 50.0
 __meta__ = {
@@ -294,7 +405,7 @@ __meta__ = {
 
 [node name="Seg5" type="Bone2D" parent="Skeleton2D/Base"]
 position = Vector2( 6.88525, 22.1835 )
-rotation = 3.05553
+rotation = 3.05552
 rest = Transform2D( -0.996299, 0.0859638, -0.0859638, -0.996299, 6.88525, 22.1835 )
 default_length = 50.0
 __meta__ = {
@@ -313,7 +424,7 @@ __meta__ = {
 
 [node name="Seg7" type="Bone2D" parent="Skeleton2D/Base"]
 position = Vector2( 6.88496, -23.7956 )
-rotation = 3.17601
+rotation = -3.10717
 rest = Transform2D( -0.999408, -0.0344186, 0.0344186, -0.999408, 6.88496, -23.7956 )
 default_length = 50.0
 __meta__ = {
@@ -324,6 +435,7 @@ __meta__ = {
 [node name="Seg8" type="Bone2D" parent="Skeleton2D/Base/Seg7"]
 position = Vector2( 54.3325, -0.191212 )
 rotation = -0.00387025
+scale = Vector2( 0.999999, 0.999999 )
 rest = Transform2D( 0.999992, -0.00387024, 0.00387024, 0.999992, 54.3325, -0.191212 )
 default_length = 54.0
 __meta__ = {
@@ -349,7 +461,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Base"]
 position = Vector2( 0, -65.0225 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Base"]
 position = Vector2( 0, -130.102 )
@@ -383,7 +495,7 @@ physics_material_override = ExtResource( 2 )
 gravity_scale = 10.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Base/Head"]
-position = Vector2( -37.788, -69.1865 )
+position = Vector2( -37.7881, -69.1865 )
 scale = Vector2( 0.190851, 0.190851 )
 texture = ExtResource( 3 )
 polygon = PoolVector2Array( 82.2368, 24.3421, 11.8421, 101.974, 6.57895, 205.263, 46.0526, 315.789, 128.947, 382.895, 250, 383.553, 352.632, 342.105, 407.237, 232.237, 399.342, 134.868, 346.711, 40.1316, 255.263, 5.26316, 151.316, 5.26316 )
@@ -582,5 +694,6 @@ shape = SubResource( 8 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
 playback_process_mode = 0
-anims/Idle = SubResource( 12 )
-anims/Run = SubResource( 10 )
+anims/Crawl = SubResource( 9 )
+anims/Idle = SubResource( 10 )
+anims/Run = SubResource( 11 )

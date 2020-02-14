@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 39.1134, 40.5828 )
+
+[node name="Obstacle" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 5
+gravity_scale = 5.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -39.0
+margin_top = -40.0
+margin_right = 39.0
+margin_bottom = 41.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

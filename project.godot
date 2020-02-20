@@ -50,7 +50,7 @@ character_move_up={
 
 2d_physics/layer_1="player_rigid_parts"
 2d_physics/layer_2="player_controller"
-2d_physics/layer_3="objests"
+2d_physics/layer_3="objects"
 
 [physics]
 

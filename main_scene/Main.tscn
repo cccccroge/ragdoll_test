@@ -87,7 +87,7 @@ position = Vector2( 577.162, 91.1091 )
 shape = SubResource( 1 )
 
 [node name="Baby" parent="." instance=ExtResource( 1 )]
-position = Vector2( 250.377, 640.817 )
+position = Vector2( 250.377, 927.488 )
 gravity_scale = 10.0
 SPEED = 30
 JUMP_SPEED = 30

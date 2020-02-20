@@ -3,7 +3,7 @@ extends RigidBody2D
 export var SPEED = 10
 export var JUMP_SPEED = 15
 
-export var anim_ratio = 0.1
+export var anim_ratio = 0.3
 
 var physics_ratio = 1 - anim_ratio
 var isBlend := true
@@ -15,7 +15,7 @@ var rigid_list := []
 var bone2rigid_rot_list := []	# offset to transform from bone-coord to rigid-coord
 								# TODO: it's tedious, need refactoring
 
-onready var anim_player = get_node("AnimationPlayer")
+onready var anim_player = get_node("../AnimationPlayer")
 
 
 func _ready():
@@ -84,7 +84,7 @@ func _integrate_forces(state):
 		#anim_player.play("Run")
 		anim_player.play("Idle")
 		#anim_player.stop()
-		isBlend = true
+		isBlend = false
 	
 	apply_impulse(Vector2(0, 0), f)
 

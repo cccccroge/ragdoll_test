@@ -87,10 +87,7 @@ position = Vector2( 577.162, 91.1091 )
 shape = SubResource( 1 )
 
 [node name="Baby" parent="." instance=ExtResource( 1 )]
-position = Vector2( 250.377, 927.488 )
-gravity_scale = 10.0
-SPEED = 30
-JUMP_SPEED = 30
+position = Vector2( 524.503, 918.854 )
 
 [node name="Camera2D" type="Camera2D" parent="Baby"]
 position = Vector2( 62.83, -369.361 )

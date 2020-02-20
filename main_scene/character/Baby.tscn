@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://main_scene/character/physicsmaterial.tres" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/baby/LegUpperLeft.png" type="Texture" id=2]
@@ -12,9 +12,6 @@
 [ext_resource path="res://assets/baby/LegLowerRight.png" type="Texture" id=10]
 [ext_resource path="res://assets/baby/Head.png" type="Texture" id=11]
 [ext_resource path="res://main_scene/character/Baby.gd" type="Script" id=12]
-
-[sub_resource type="CircleShape2D" id=6]
-radius = 10.628
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 37.8153
@@ -254,25 +251,15 @@ tracks/9/keys = {
 "values": [ 101.474 ]
 }
 
-[node name="Baby" type="RigidBody2D"]
-collision_mask = 4
-script = ExtResource( 12 )
-SPEED = 5
-JUMP_SPEED = 500
-BONE_ROOT = NodePath("Skeleton2D/Base")
-RIGID_ROOT = NodePath("Base")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.459522, -13.4987 )
-rotation = 1.57079
-z_index = 4
-shape = SubResource( 6 )
+[node name="Baby" type="Node2D"]
 
 [node name="Base" type="RigidBody2D" parent="."]
 position = Vector2( -14.5782, -37.175 )
 collision_mask = 4
-mode = 3
 physics_material_override = ExtResource( 1 )
+script = ExtResource( 12 )
+BONE_ROOT = NodePath("../Skeleton2D/Base")
+RIGID_ROOT = NodePath(".")
 
 [node name="Polygon2D" type="Polygon2D" parent="Base"]
 position = Vector2( -252.24, -248.609 )

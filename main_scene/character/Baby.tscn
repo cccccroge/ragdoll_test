@@ -11,12 +11,12 @@
 [ext_resource path="res://assets/baby/LegLowerLeft.png" type="Texture" id=9]
 [ext_resource path="res://assets/baby/LegLowerRight.png" type="Texture" id=10]
 [ext_resource path="res://assets/baby/Head.png" type="Texture" id=11]
-[ext_resource path="res://main_scene/character/Baby.gd" type="Script" id=12]
+[ext_resource path="res://main_scene/character/Baby_controller.gd" type="Script" id=12]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=1]
 radius = 37.8153
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 loop = true
 step = 0.05
 tracks/0/type = "value"
@@ -128,7 +128,7 @@ tracks/8/keys = {
 "values": [ 15.5351, 76.7477, 94.951, 81.2425, 15.5351 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Skeleton2D/Base/ArmUpperLeft/ArmLowerLeft:rotation_degrees")
@@ -276,6 +276,7 @@ polygon = PoolVector2Array( -37.5061, -7.97499, -22.6315, -24.7652, 3.02671, -27
 
 [node name="Head" type="RigidBody2D" parent="Base"]
 position = Vector2( 55.0578, -21.9825 )
+rotation = 0.566664
 collision_mask = 4
 physics_material_override = ExtResource( 1 )
 angular_damp = 0.0
@@ -292,11 +293,11 @@ bones = [ NodePath("Base"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("B
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Base/Head"]
 position = Vector2( 12.1046, -28.3521 )
 z_index = 1
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="ArmUpperLeft" type="RigidBody2D" parent="Base"]
 position = Vector2( 45.0801, -4.51426 )
-collision_mask = 0
+collision_mask = 4
 physics_material_override = ExtResource( 1 )
 angular_damp = 10.0
 
@@ -332,7 +333,7 @@ polygon = PoolVector2Array( -1.06883, -2.19714, 4.5004, -1.21116, 7.95082, 5.273
 
 [node name="ArmUpperRight" type="RigidBody2D" parent="Base"]
 position = Vector2( 44.7212, -4.90985 )
-collision_mask = 0
+collision_mask = 4
 physics_material_override = ExtResource( 1 )
 angular_damp = 10.0
 
@@ -374,7 +375,7 @@ polygon = PoolVector2Array( 0.918974, 19.617, 7.10351, 19.1202, 16.7242, 28.2326
 [node name="LegUpperLeft" type="RigidBody2D" parent="Base"]
 position = Vector2( -20.3831, 1.36944 )
 rotation = -0.0799432
-collision_mask = 0
+collision_mask = 4
 physics_material_override = ExtResource( 1 )
 angular_damp = 10.0
 
@@ -415,7 +416,7 @@ polygon = PoolVector2Array( 3.48287, 2.50498, -4.74056, 5.17259, -17.0766, 4.957
 [node name="LegUpperRight" type="RigidBody2D" parent="Base"]
 position = Vector2( -20.3821, 1.16086 )
 rotation = 0.580598
-collision_mask = 0
+collision_mask = 4
 physics_material_override = ExtResource( 1 )
 angular_damp = 10.0
 
@@ -576,5 +577,5 @@ node_b = NodePath("../../Base/LegUpperRight/LegLowerRight")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
 playback_process_mode = 0
-anims/Crawl = SubResource( 4 )
-anims/Idle = SubResource( 5 )
+anims/Crawl = SubResource( 2 )
+anims/Idle = SubResource( 3 )

@@ -86,11 +86,8 @@ visible = false
 position = Vector2( 577.162, 91.1091 )
 shape = SubResource( 1 )
 
-[node name="Baby" parent="." instance=ExtResource( 1 )]
-position = Vector2( 524.503, 918.854 )
-
-[node name="Camera2D" type="Camera2D" parent="Baby"]
-position = Vector2( 62.83, -369.361 )
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 486.883, 539.9 )
 offset = Vector2( -525, -50.84 )
 anchor_mode = 0
 current = true
@@ -100,6 +97,9 @@ smoothing_enabled = true
 drag_margin_top = 0.15
 drag_margin_bottom = 0.8
 editor_draw_drag_margin = true
+
+[node name="Baby" parent="." instance=ExtResource( 1 )]
+position = Vector2( 424.053, 517.056 )
 
 [node name="Obstacle" parent="." instance=ExtResource( 2 )]
 position = Vector2( 723.122, 143.705 )
@@ -112,3 +112,5 @@ rotation = -0.00823909
 [node name="Obstacle3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 776.806, 261.6 )
 rotation = -0.564795
+
+[editable path="Baby"]

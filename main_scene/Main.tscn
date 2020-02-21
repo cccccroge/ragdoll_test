@@ -86,8 +86,11 @@ visible = false
 position = Vector2( 577.162, 91.1091 )
 shape = SubResource( 1 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 486.883, 539.9 )
+[node name="Baby" parent="." instance=ExtResource( 1 )]
+position = Vector2( 424.053, 517.056 )
+
+[node name="Camera2D" type="Camera2D" parent="Baby/Base" index="7"]
+position = Vector2( 77.4082, -316.714 )
 offset = Vector2( -525, -50.84 )
 anchor_mode = 0
 current = true
@@ -97,9 +100,6 @@ smoothing_enabled = true
 drag_margin_top = 0.15
 drag_margin_bottom = 0.8
 editor_draw_drag_margin = true
-
-[node name="Baby" parent="." instance=ExtResource( 1 )]
-position = Vector2( 424.053, 517.056 )
 
 [node name="Obstacle" parent="." instance=ExtResource( 2 )]
 position = Vector2( 723.122, 143.705 )

@@ -11,9 +11,12 @@ var isBlend := true
 
 export(NodePath) var BONE_ROOT
 export(NodePath) var RIGID_ROOT
+export(NodePath) var RIGID_ROOT_LEFT
 var bone_list := []
 var rigid_list := []
+var rigid_list_l := []
 var bone2rigid_rot_list := []	# offset to transform from bone-coord to rigid-coord
+var bone2rigid_rot_list_l := []
 
 # Angle constraints
 export(int) var head_min = -26
@@ -66,10 +69,24 @@ func _ready():
 			if node is RigidBody2D:
 				l.push_back(node)
 	
+	l.push_back(get_node(RIGID_ROOT_LEFT))
+
+	while not l.empty():
+		var current = l.pop_front()
+		rigid_list_l.append(current)
+		for node in current.get_children():
+			if node is RigidBody2D:
+				l.push_back(node)
+	
 	# Get all rotation offset between them
 	assert(bone_list.size() == rigid_list.size())
 	for i in range(bone_list.size()):
 		bone2rigid_rot_list.append(rigid_list[i].get_rotation()\
+			 - bone_list[i].get_rotation())
+	
+	assert(bone_list.size() == rigid_list_l.size())
+	for i in range(bone_list.size()):
+		bone2rigid_rot_list_l.append(rigid_list_l[i].get_rotation()\
 			 - bone_list[i].get_rotation())
 	
 	# Get angle constraints (should be same order as the other lists)

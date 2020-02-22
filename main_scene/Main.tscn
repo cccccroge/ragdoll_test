@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://main_scene/character/Baby.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main_scene/obstacles/Box.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/baby_bed/back_fence.png" type="Texture" id=3]
 [ext_resource path="res://assets/baby_bed/front_fence.png" type="Texture" id=4]
 [ext_resource path="res://assets/baby_bed/right_fence.png" type="Texture" id=5]
+[ext_resource path="res://assets/cloth_box.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1540.59, 91.3183 )
@@ -166,5 +167,19 @@ rotation = -0.00823909
 [node name="Obstacle3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 776.806, 261.6 )
 rotation = -0.564795
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2( 777.771, 910.805 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="RigidBody2D"]
+position = Vector2( 3.7619, 38.4166 )
+scale = Vector2( 0.526849, 0.681347 )
+texture = ExtResource( 6 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D"]
+polygon = PoolVector2Array( -86.7912, -47.9579, -74.2476, 25.2132, 70.8402, 23.9589, 78.3663, -37.0867, 82.9657, -36.2505, 85.8925, -50.8847, -8.18457, -53.3934, -92.6449, -51.7209, -92.6449, -42.1042, -89.2999, -34.578, -85.5369, -34.578, -85.955, -34.9961, -85.955, -34.9961 )
 
 [editable path="Baby"]

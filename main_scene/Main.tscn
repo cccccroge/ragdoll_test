@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://main_scene/character/Baby.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main_scene/obstacles/Box.tscn" type="PackedScene" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://assets/baby_bed/front_fence.png" type="Texture" id=4]
 [ext_resource path="res://assets/baby_bed/right_fence.png" type="Texture" id=5]
 [ext_resource path="res://assets/cloth_box.png" type="Texture" id=6]
+[ext_resource path="res://assets/Boyu/Boyu_head.png" type="Texture" id=7]
+[ext_resource path="res://assets/Boyu/Boyu_body.png" type="Texture" id=8]
+[ext_resource path="res://assets/Boyu/Boyu_R_HAND.png" type="Texture" id=9]
+[ext_resource path="res://assets/Boyu/Boyu_L_HAND.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1540.59, 91.3183 )
@@ -181,5 +185,76 @@ texture = ExtResource( 6 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D"]
 polygon = PoolVector2Array( -86.7912, -47.9579, -74.2476, 25.2132, 70.8402, 23.9589, 78.3663, -37.0867, 82.9657, -36.2505, 85.8925, -50.8847, -8.18457, -53.3934, -92.6449, -51.7209, -92.6449, -42.1042, -89.2999, -34.578, -85.5369, -34.578, -85.955, -34.9961, -85.955, -34.9961 )
+
+[node name="boyu" type="Position2D" parent="."]
+position = Vector2( 380.802, 667.99 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="head" type="RigidBody2D" parent="boyu"]
+position = Vector2( -70.5303, -64.7067 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="boyu/head"]
+texture = ExtResource( 7 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="boyu/head"]
+polygon = PoolVector2Array( 12.1702, -30.3518, -3.0359, -31.646, -16.3008, -25.8223, -21.8008, -18.7046, -21.4773, -10.2927, -26.6539, -0.910271, -24.7126, 12.6781, -20.1832, 16.8841, -17.2714, 30.1489, -2.71237, 34.6784, 15.082, 32.7372, 19.935, 22.0606, 19.2879, 12.6781, 23.8174, 14.6193, 24.788, 4.58981, 21.5526, -0.263199, 26.0821, -7.0574, 21.8762, -23.5576 )
+
+[node name="left_hand" type="RigidBody2D" parent="boyu"]
+position = Vector2( -89.9423, -10.0295 )
+rotation = 0.349066
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="boyu/left_hand"]
+texture = ExtResource( 10 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="boyu/left_hand"]
+polygon = PoolVector2Array( -9.18304, -17.4105, -20.8302, -7.70448, -20.8302, 2.32507, -13.389, 8.14867, -4.65356, 6.53101, -6.27124, 0.707397, -11.4478, -4.46914 )
+
+[node name="right_hand" type="RigidBody2D" parent="boyu"]
+position = Vector2( -62.1184, -12.9413 )
+rotation = -0.349066
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="boyu/right_hand"]
+texture = ExtResource( 9 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="boyu/right_hand"]
+polygon = PoolVector2Array( 15.082, -12.5575, 23.1703, -6.08681, 25.435, 2.00153, 20.582, 13.3252, 12.8172, 13.9723, 12.8172, 6.53101, 16.3761, 0.707397 )
+
+[node name="body" type="RigidBody2D" parent="boyu"]
+position = Vector2( -72.148, -8.41187 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="boyu/body"]
+texture = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="boyu/body"]
+polygon = PoolVector2Array( -17.2714, -23.8811, -18.8891, -13.2045, -18.242, -10.2927, -23.095, -0.263199, -21.8008, 12.0311, -11.7713, 17.2076, -9.83011, 22.3841, -4.33003, 23.0312, -1.41824, 18.8253, 5.69951, 18.5017, 7.6407, 21.7371, 13.1408, 23.0312, 13.7878, 17.2076, 20.2585, 13.3252, 23.4939, 6.53101, 22.8468, -2.2044, 16.0526, -11.2633, 17.9938, -16.1163, 18.6408, -21.6164 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="boyu"]
+position = Vector2( -70.8538, -31.7063 )
+node_a = NodePath("../head")
+node_b = NodePath("../body")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="boyu"]
+position = Vector2( -90.9129, -27.8239 )
+node_a = NodePath("../left_hand")
+node_b = NodePath("../body")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="boyu"]
+position = Vector2( -50.4712, -25.8827 )
+node_a = NodePath("../body")
+node_b = NodePath("../right_hand")
 
 [editable path="Baby"]

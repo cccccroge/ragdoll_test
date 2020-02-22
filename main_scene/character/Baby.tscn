@@ -462,6 +462,10 @@ polygon = PoolVector2Array( -19.3224, -1.99473, -9.15796, -5.38774, 3.82858, -3.
 position = Vector2( 14.578, -37.175 )
 collision_mask = 4
 physics_material_override = ExtResource( 1 )
+script = ExtResource( 12 )
+BONE_ROOT = NodePath("../Skeleton2D/Base")
+RIGID_ROOT = NodePath("../Base")
+RIGID_ROOT_LEFT = NodePath(".")
 
 [node name="Polygon2D" type="Polygon2D" parent="BaseLeft"]
 position = Vector2( 0.0218353, -0.0198975 )

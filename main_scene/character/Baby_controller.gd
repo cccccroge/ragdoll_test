@@ -1,8 +1,7 @@
-extends RigidBody2D
+extends Node2D
 
 # Movement
-export var SPEED = 10
-export var JUMP_SPEED = 15
+var isMoving := false		# give hint to two rigid base
 
 # Active ragdoll
 export var anim_ratio = 0.15
@@ -48,8 +47,8 @@ var rigid_angle_constraints := []
 var isFlip := false		# default toward right
 
 # Get nodes
-onready var anim_player = get_node("../AnimationPlayer")
-onready var skeleton = get_node("../Skeleton2D")
+onready var anim_player = get_node("AnimationPlayer")
+onready var skeleton = get_node("Skeleton2D")
 
 
 func _ready():
@@ -106,9 +105,7 @@ func _ready():
 	rigid_angle_constraints.append([deg2rad(legLowerRight_min), deg2rad(legLowerRight_max)])
 
 	# Set default flip to right
-	rigid_list_target = rigid_list
-	bone2rigid_rot_list_target = bone2rigid_rot_list
-	rigid_list_l[0].set_visible(false)
+	flip("right")
 
 func _physics_process(delta):
 	if isBlend:
@@ -132,58 +129,54 @@ func _physics_process(delta):
 			clamp(rigid_list_target[i].get_rotation(), 
 				  rigid_angle_constraints[i][0], rigid_angle_constraints[i][1]))
 
-func _integrate_forces(state):
-	# Movement and animation
-	var f := Vector2()
+func _process(delta):
+	# Do animation
 	isBlend = false
+	isMoving = false
 	
 	if Input.is_action_pressed("character_move_right"):
-		f.x += SPEED
 		isBlend = true
+		isMoving = true
 		if isFlip:
-			flip("right", state)
+			flip("right")
 			isFlip = false
 		anim_player.play("Crawl")
 	elif Input.is_action_pressed("character_move_left"):
-		f.x -= SPEED
 		isBlend = true
+		isMoving = true
 		if not isFlip:
-			flip("left", state)
+			flip("left")
 			isFlip = true
 		anim_player.play("Crawl")
 	elif Input.is_action_just_pressed("character_move_up"):
-		f.y -= JUMP_SPEED
 		isBlend = true
+		isMoving = true
 		anim_player.play("Idle")
-	
+		
 	else:
 		isBlend = false
+		isMoving = false
 		anim_player.play("Idle")
-	
-	apply_impulse(Vector2(0, 0), f)
 
-func flip(direction, state):
-	if direction == "left" and self.get_name() == "Base":
-		# swap visibility
-		rigid_list[0].set_visible(false)
-		rigid_list_l[0].set_visible(true)
-		# change position
-		var prev_pos = rigid_list[0].get_position()
-		var state_l = Physics2DServer.body_get_direct_state(
-			rigid_list_l[0].get_rid())
-		state_l.set_transform(Transform2D(0.0, prev_pos))
-		# update target lists
+func flip(direction):
+	if direction == "left":
+		rigid_list_l[0].set_position(rigid_list[0].get_position())
+		
+		set_all_rigid(rigid_list, false)
+		set_all_rigid(rigid_list_l, true)
+		
 		rigid_list_target = rigid_list_l
 		bone2rigid_rot_list_target = bone2rigid_rot_list_l
+	elif direction == "right":
+		rigid_list[0].set_position(rigid_list_l[0].get_position())
 		
-	elif direction == "right" and self.get_name() == "BaseLeft":
-		rigid_list_l[0].set_visible(false)
-		rigid_list[0].set_visible(true)
-		
-		var prev_pos = rigid_list_l[0].get_position()
-		var state_r = Physics2DServer.body_get_direct_state(
-			rigid_list[0].get_rid())
-		state_r.set_transform(Transform2D(0.0, prev_pos))
+		set_all_rigid(rigid_list_l, false)
+		set_all_rigid(rigid_list, true)
 		
 		rigid_list_target = rigid_list
 		bone2rigid_rot_list_target = bone2rigid_rot_list
+
+func set_all_rigid(list, boolean):
+	for rigid in list:
+		rigid.set_mode(RigidBody2D.MODE_RIGID if boolean 
+			else RigidBody2D.MODE_STATIC)

@@ -102,15 +102,15 @@ editor_draw_drag_margin = true
 position = Vector2( 444.559, 775.427 )
 
 [node name="Obstacle" parent="." instance=ExtResource( 2 )]
-position = Vector2( 723.122, 143.705 )
+position = Vector2( 797.118, 143.705 )
 rotation = -0.617611
 
 [node name="Obstacle2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 857.859, 148.968 )
+position = Vector2( 931.855, 148.968 )
 rotation = -0.00823909
 
 [node name="Obstacle3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 776.806, 261.6 )
+position = Vector2( 850.803, 261.6 )
 rotation = -0.564795
 
 [editable path="Baby"]

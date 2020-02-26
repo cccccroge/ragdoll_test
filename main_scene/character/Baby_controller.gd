@@ -21,9 +21,9 @@ var bone2rigid_rot_list_target
 
 # Angle constraints
 export(Array, Array, int) var rigid_angle_constraints := [
-	[0, 0], [-26, 32], # Base & Head, Base's angles are meaningless, just for alignment
-	[-70, 90], [-80, 25], [-80, 80], [-68, 45], # Arm left/right
-	[-75, 80], [-80, 48], [-15, 130], [-130, 2]	# Leg left/right
+	[0, 0], [-22, 40], # Base & Head, Base's angles are meaningless, just for alignment
+	[-70, 90], [-80, 60], [-80, 80], [-68, 57], # Arm left/right
+	[-75, 80], [-80, 48], [-15, 130], [-130, 5]	# Leg left/right
 ]
 export(Array, Array, int) var rigid_angle_constraints_l := [
 	[0, 0], [-40, 16], # Base & Head, Base's angles are meaningless, just for alignment
@@ -113,12 +113,12 @@ func _physics_process(delta):
 	# blend feet anyway to look more realistic
 	for i in range(bone_list.size()-4, bone_list.size()):
 			var physics = rigid_list_target[i].get_rotation()
-			
+
 			var bone_rot = bone_list[i].get_rotation()
 			if isFlip:
 				bone_rot = PI - bone_rot
 			var animation = bone_rot + bone2rigid_rot_list_target[i]
-			
+
 			rigid_list_target[i].set_rotation(
 				physics * physics_ratio + animation * anim_ratio)
 			
@@ -201,4 +201,4 @@ func set_all_rigid(list, boolean):
 	var mode = RigidBody2D.MODE_RIGID if boolean else RigidBody2D.MODE_STATIC
 	for rigid in list:
 		rigid.set_mode(mode)
-		rigid.set_collision_mask_bit(3, boolean)
+		rigid.set_collision_mask_bit(2, boolean)

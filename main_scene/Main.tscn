@@ -145,11 +145,8 @@ texture = ExtResource( 5 )
 position = Vector2( 19.5486, 80.4354 )
 shape = SubResource( 4 )
 
-[node name="Baby" parent="." instance=ExtResource( 1 )]
-position = Vector2( 424.053, 517.056 )
-
-[node name="Camera2D" type="Camera2D" parent="Baby/Base" index="7"]
-position = Vector2( 77.4082, -316.714 )
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 515.591, 522.015 )
 offset = Vector2( -525, -50.84 )
 anchor_mode = 0
 current = true
@@ -160,16 +157,19 @@ drag_margin_top = 0.15
 drag_margin_bottom = 0.8
 editor_draw_drag_margin = true
 
+[node name="Baby" parent="." instance=ExtResource( 1 )]
+position = Vector2( 444.559, 775.427 )
+
 [node name="Obstacle" parent="." instance=ExtResource( 2 )]
-position = Vector2( 723.122, 143.705 )
+position = Vector2( 797.118, 143.705 )
 rotation = -0.617611
 
 [node name="Obstacle2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 857.859, 148.968 )
+position = Vector2( 931.855, 148.968 )
 rotation = -0.00823909
 
 [node name="Obstacle3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 776.806, 261.6 )
+position = Vector2( 850.803, 261.6 )
 rotation = -0.564795
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
@@ -256,5 +256,3 @@ node_b = NodePath("../body")
 position = Vector2( -50.4712, -25.8827 )
 node_a = NodePath("../body")
 node_b = NodePath("../right_hand")
-
-[editable path="Baby"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://main_scene/character/physicsmaterial.tres" type="PhysicsMaterial" id=1]
 [ext_resource path="res://assets/baby/LegUpperLeft.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/baby/LegLowerRight.png" type="Texture" id=10]
 [ext_resource path="res://assets/baby/Head.png" type="Texture" id=11]
 [ext_resource path="res://main_scene/character/Baby_controller.gd" type="Script" id=12]
+[ext_resource path="res://main_scene/character/Base.gd" type="Script" id=13]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 37.8153
@@ -252,17 +253,23 @@ tracks/9/keys = {
 }
 
 [node name="Baby" type="Node2D"]
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -37.1097 ]
+}
+BONE_ROOT = NodePath("Skeleton2D/Base")
+RIGID_ROOT = NodePath("Base")
+RIGID_ROOT_LEFT = NodePath("BaseLeft")
 
 [node name="Base" type="RigidBody2D" parent="."]
-position = Vector2( -14.5782, -37.175 )
+position = Vector2( 0.0868378, -37.175 )
 collision_mask = 4
 physics_material_override = ExtResource( 1 )
-script = ExtResource( 12 )
-BONE_ROOT = NodePath("../Skeleton2D/Base")
-RIGID_ROOT = NodePath(".")
+gravity_scale = 1.35
+script = ExtResource( 13 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Base"]
-position = Vector2( -252.24, -248.609 )
+position = Vector2( -269.655, -248.609 )
 rotation = 0.0920407
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 5 )
@@ -271,14 +278,16 @@ uv = PoolVector2Array( 1128.3, 1137.74, 1239.62, 1292.45, 1400, 1298.11, 1790.57
 bones = [ NodePath("Base"), PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ), NodePath("Base/Head"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft/ArmLowerLeft"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight/ArmLowerRight"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft/LegLowerLeft"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperRight"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperRight/LegLowerRight"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ) ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Base"]
+position = Vector2( -17.415, 0 )
 rotation = 0.00693503
 polygon = PoolVector2Array( -37.5061, -7.97499, -22.6315, -24.7652, 3.02671, -27.0143, 25.1831, -26.4085, 36.8583, -34.8714, 46.3629, -25.4162, 72.0366, -18.3512, 78.7495, -8.24274, 77.1507, 7.98038, 59.9316, 9.43062, 34.179, 19.0038, 6.0132, 27.047, -17.4323, 24.1837, -35.9459, 11.234 )
 
 [node name="Head" type="RigidBody2D" parent="Base"]
-position = Vector2( 55.0578, -21.9825 )
+position = Vector2( 37.6428, -21.9825 )
 rotation = 0.566664
 collision_mask = 4
 physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
 angular_damp = 0.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Base/Head"]
@@ -296,9 +305,10 @@ z_index = 1
 shape = SubResource( 1 )
 
 [node name="ArmUpperLeft" type="RigidBody2D" parent="Base"]
-position = Vector2( 45.0801, -4.51426 )
+position = Vector2( 27.6651, -4.51426 )
 collision_mask = 4
 physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
 angular_damp = 10.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Base/ArmUpperLeft"]
@@ -317,6 +327,7 @@ polygon = PoolVector2Array( -0.766668, -5.45004, 6.50109, -2.71957, 8.30223, 6.0
 position = Vector2( 3.32789, 18.9203 )
 collision_mask = 4
 physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
 angular_damp = 10.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Base/ArmUpperLeft/ArmLowerLeft"]
@@ -332,9 +343,10 @@ bones = [ NodePath("Base"), PoolRealArray( 0, 0, 0, 0, 0, 0 ), NodePath("Base/He
 polygon = PoolVector2Array( -1.06883, -2.19714, 4.5004, -1.21116, 7.95082, 5.27328, 14.8295, 7.3882, 16.9161, 11.6169, 8.39733, 13.2204, 3.17043, 11.5277, -3.96694, 1.45657 )
 
 [node name="ArmUpperRight" type="RigidBody2D" parent="Base"]
-position = Vector2( 44.7212, -4.90985 )
+position = Vector2( 27.3062, -4.90985 )
 collision_mask = 4
 physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
 angular_damp = 10.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Base/ArmUpperRight"]
@@ -355,6 +367,7 @@ position = Vector2( 4.1902, 23.9459 )
 rotation = 0.0879757
 collision_mask = 4
 physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
 angular_damp = 10.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Base/ArmUpperRight/ArmLowerRight"]
@@ -373,10 +386,11 @@ z_index = 1
 polygon = PoolVector2Array( 0.918974, 19.617, 7.10351, 19.1202, 16.7242, 28.2326, 22.8706, 26.9451, 25.9446, 34.5243, 20.6344, 38.0831, 15.2279, 38.2782, 12.6702, 33.1839, 7.44164, 30.5564, 0.0797081, 26.8568 )
 
 [node name="LegUpperLeft" type="RigidBody2D" parent="Base"]
-position = Vector2( -20.3831, 1.36944 )
+position = Vector2( -37.7981, 1.36944 )
 rotation = -0.0799432
 collision_mask = 4
 physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
 angular_damp = 10.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Base/LegUpperLeft"]
@@ -397,6 +411,7 @@ position = Vector2( -2.70327, 28.4332 )
 rotation = -0.024101
 collision_mask = 4
 physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
 angular_damp = 10.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Base/LegUpperLeft/LegLowerLeft"]
@@ -414,10 +429,11 @@ rotation = 0.0207391
 polygon = PoolVector2Array( 3.48287, 2.50498, -4.74056, 5.17259, -17.0766, 4.95739, -24.4453, 6.85392, -27.2244, 4.71761, -19.2198, -2.48047, -15.5245, -1.52365, -5.61387, -4.51602, 2.90533, -2.73797 )
 
 [node name="LegUpperRight" type="RigidBody2D" parent="Base"]
-position = Vector2( -20.3821, 1.16086 )
+position = Vector2( -37.7971, 1.16086 )
 rotation = 0.580598
 collision_mask = 4
 physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
 angular_damp = 10.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Base/LegUpperRight"]
@@ -438,6 +454,7 @@ position = Vector2( 20.9035, 19.6238 )
 rotation = -0.620641
 collision_mask = 4
 physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
 angular_damp = 10.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Base/LegUpperRight/LegLowerRight"]
@@ -453,7 +470,347 @@ bones = [ NodePath("Base"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/Head"), 
 z_index = 1
 polygon = PoolVector2Array( -19.3224, -1.99473, -9.15796, -5.38774, 3.82858, -3.36875, 4.89521, 2.81087, -6.28294, 6.42354, -21.466, 6.64457, -31.6921, 8.76018, -34.237, 5.55411, -28.7287, 1.19094, -25.1791, -3.07765 )
 
+[node name="BaseLeft" type="RigidBody2D" parent="."]
+visible = false
+position = Vector2( 0, -37.175 )
+collision_mask = 4
+physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
+script = ExtResource( 13 )
+
+[node name="Polygon2D" type="Polygon2D" parent="BaseLeft"]
+position = Vector2( 23.8632, -0.0198975 )
+rotation = -0.101554
+scale = Vector2( -0.2, 0.2 )
+offset = Vector2( -1370.21, -1121.76 )
+texture = ExtResource( 5 )
+polygon = PoolVector2Array( 1128.3, 1137.74, 1239.62, 1292.45, 1400, 1298.11, 1790.57, 1145.28, 1805.66, 1060.38, 1713.21, 949.057, 1535.85, 896.226, 1213.21, 996.226 )
+uv = PoolVector2Array( 1128.3, 1137.74, 1239.62, 1292.45, 1400, 1298.11, 1790.57, 1145.28, 1805.66, 1060.38, 1709.43, 915.094, 1501.89, 901.887, 1213.21, 996.226 )
+bones = [ NodePath("Base"), PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ), NodePath("Base/Head"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft/ArmLowerLeft"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight/ArmLowerRight"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft/LegLowerLeft"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperRight"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperRight/LegLowerRight"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BaseLeft"]
+position = Vector2( 23.8413, 0 )
+rotation = 0.00693503
+polygon = PoolVector2Array( -25.4578, -25.9711, -37.3496, -34.3412, -46.7307, -24.8291, -72.4348, -17.3915, -78.926, -7.00443, -77.0258, 8.89325, -59.9121, 10.2662, -5.93474, 27.1847, 17.8504, 23.9675, 36.0716, 10.6555, 37.4028, -8.64394, 22.1484, -25.2644, -5.57731, -26.9035 )
+
+[node name="Head" type="RigidBody2D" parent="BaseLeft"]
+position = Vector2( -31.1972, -21.9227 )
+rotation = -0.618738
+collision_mask = 4
+physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
+angular_damp = 0.0
+
+[node name="Polygon2D" type="Polygon2D" parent="BaseLeft/Head"]
+position = Vector2( -7.21851, 10.5252 )
+rotation = 0.0794321
+scale = Vector2( -0.2, 0.2 )
+z_index = 1
+offset = Vector2( -1615.76, -1003.52 )
+texture = ExtResource( 11 )
+polygon = PoolVector2Array( 1424.52, 784.788, 1546.74, 561.331, 1749.21, 556.393, 1898.6, 739.109, 1892.42, 927.998, 1746.74, 1029.23, 1547.98, 1020.59, 1447.98, 920.59 )
+uv = PoolVector2Array( 1424.52, 784.788, 1546.74, 561.331, 1749.21, 556.393, 1898.6, 739.109, 1892.42, 927.998, 1746.74, 1029.23, 1547.98, 1020.59, 1447.98, 920.59 )
+bones = [ NodePath("Base"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/Head"), PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ), NodePath("Base/ArmUpperLeft"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft/ArmLowerLeft"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight/ArmLowerRight"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft/LegLowerLeft"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperRight"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperRight/LegLowerRight"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseLeft/Head"]
+position = Vector2( -10.5439, -28.7731 )
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="ArmUpperLeft" type="RigidBody2D" parent="BaseLeft"]
+position = Vector2( -21.226, -4.52226 )
+rotation = 0.328109
+collision_mask = 4
+physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
+angular_damp = 10.0
+
+[node name="Polygon2D" type="Polygon2D" parent="BaseLeft/ArmUpperLeft"]
+position = Vector2( 0.393341, 0.101791 )
+rotation = -0.303709
+scale = Vector2( -0.2, 0.2 )
+z_index = -2
+offset = Vector2( -1504.12, -1100.76 )
+texture = ExtResource( 6 )
+polygon = PoolVector2Array( 1437.5, 1056.25, 1481.25, 1231.25, 1572.92, 1225, 1556.25, 1039.58 )
+uv = PoolVector2Array( 1437.5, 1056.25, 1481.25, 1231.25, 1572.92, 1225, 1556.25, 1039.58 )
+bones = [ NodePath("Base"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/Head"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft"), PoolRealArray( 1, 1, 1, 1 ), NodePath("Base/ArmUpperLeft/ArmLowerLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight/ArmLowerRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft/LegLowerLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperRight/LegLowerRight"), PoolRealArray( 0, 0, 0, 0 ) ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BaseLeft/ArmUpperLeft"]
+polygon = PoolVector2Array( -1.01172, -5.42607, -7.0722, -0.505777, -6.01595, 8.12447, -1.34818, 20.4035, 3.09116, 23.0039, 7.22361, 19.9943, 8.88735, 6.0478, 6.22198, -3.01033 )
+
+[node name="ArmLowerLeft" type="RigidBody2D" parent="BaseLeft/ArmUpperLeft"]
+position = Vector2( 2.93863, 18.9935 )
+rotation = -0.309993
+collision_mask = 4
+physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
+angular_damp = 10.0
+
+[node name="Polygon2D" type="Polygon2D" parent="BaseLeft/ArmUpperLeft/ArmLowerLeft"]
+position = Vector2( 0.159668, 0.161179 )
+scale = Vector2( -0.2, 0.2 )
+z_index = -1
+offset = Vector2( -1519.06, -1187.91 )
+texture = ExtResource( 8 )
+polygon = PoolVector2Array( 1475.47, 1188.68, 1539.62, 1266.04, 1609.43, 1267.92, 1626.42, 1249.06, 1615.09, 1215.09, 1530.19, 1154.72 )
+uv = PoolVector2Array( 1475.47, 1188.68, 1539.62, 1266.04, 1609.43, 1267.92, 1626.42, 1249.06, 1615.09, 1215.09, 1530.19, 1154.72 )
+bones = [ NodePath("Base"), PoolRealArray( 0, 0, 0, 0, 0, 0 ), NodePath("Base/Head"), PoolRealArray( 0, 0, 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft"), PoolRealArray( 0, 0, 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft/ArmLowerLeft"), PoolRealArray( 1, 1, 1, 1, 1, 1 ), NodePath("Base/ArmUpperRight"), PoolRealArray( 0, 0, 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight/ArmLowerRight"), PoolRealArray( 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft"), PoolRealArray( 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft/LegLowerLeft"), PoolRealArray( 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperRight"), PoolRealArray( 0, 0, 0, 0, 0, 0 ), NodePath("Base/LegUpperRight/LegLowerRight"), PoolRealArray( 0, 0, 0, 0, 0, 0 ) ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BaseLeft/ArmUpperLeft/ArmLowerLeft"]
+polygon = PoolVector2Array( 1.02602, -2.25281, -4.54187, -1.10192, -7.81131, 5.39284, -14.7472, 7.68626, -16.704, 11.854, -8.20891, 13.3598, -2.9568, 11.6049, 3.971, 1.3858 )
+
+[node name="ArmUpperRight" type="RigidBody2D" parent="BaseLeft"]
+position = Vector2( -20.9017, -4.90194 )
+collision_mask = 4
+physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
+angular_damp = 10.0
+
+[node name="Polygon2D" type="Polygon2D" parent="BaseLeft/ArmUpperRight"]
+position = Vector2( -0.00177002, -0.011795 )
+scale = Vector2( -0.2, 0.2 )
+z_index = 2
+offset = Vector2( -1611.17, -1089.45 )
+texture = ExtResource( 7 )
+polygon = PoolVector2Array( 1530.19, 1052.83, 1583.02, 1247.17, 1679.25, 1243.4, 1679.25, 1028.3 )
+uv = PoolVector2Array( 1530.19, 1052.83, 1583.02, 1247.17, 1679.25, 1243.4, 1679.25, 1028.3 )
+bones = [ NodePath("Base"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/Head"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft/ArmLowerLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight"), PoolRealArray( 1, 1, 1, 1 ), NodePath("Base/ArmUpperRight/ArmLowerRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft/LegLowerLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperRight/LegLowerRight"), PoolRealArray( 0, 0, 0, 0 ) ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BaseLeft/ArmUpperRight"]
+z_index = 2
+polygon = PoolVector2Array( 0.612236, -7.21825, -8.42577, -1.08296, -10.7347, 9.53835, -10.3389, 23.92, -5.58903, 28.8678, 0.81015, 26.3609, 7.67112, 12.3751, 8.00097, -0.291309 )
+
+[node name="ArmLowerRight" type="RigidBody2D" parent="BaseLeft/ArmUpperRight"]
+position = Vector2( -4.17164, 23.944 )
+rotation = -0.0273208
+collision_mask = 4
+physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
+angular_damp = 10.0
+
+[node name="Polygon2D" type="Polygon2D" parent="BaseLeft/ArmUpperRight/ArmLowerRight"]
+position = Vector2( 0.00271606, -0.00704956 )
+rotation = -0.0625295
+scale = Vector2( -0.2, 0.2 )
+z_index = 1
+offset = Vector2( -1630.28, -1216.63 )
+texture = ExtResource( 4 )
+polygon = PoolVector2Array( 1577.36, 1232.08, 1728.3, 1318.87, 1773.58, 1237.74, 1618.87, 1150.94 )
+uv = PoolVector2Array( 1577.36, 1232.08, 1728.3, 1318.87, 1773.58, 1237.74, 1618.87, 1150.94 )
+bones = [ NodePath("Base"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/Head"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft/ArmLowerLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight/ArmLowerRight"), PoolRealArray( 1, 1, 1, 1 ), NodePath("Base/LegUpperLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft/LegLowerLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperRight/LegLowerRight"), PoolRealArray( 0, 0, 0, 0 ) ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BaseLeft/ArmUpperRight/ArmLowerRight"]
+position = Vector2( -6.27794, -23.4851 )
+rotation = -0.0879757
+z_index = 1
+polygon = PoolVector2Array( 7.96563, 20.0163, 1.8384, 18.7778, -8.67847, 26.7392, -14.7566, 24.7509, -18.6479, 31.9308, -13.8065, 36.1179, -8.45621, 36.8886, -5.30146, 32.1544, 7.95253, 27.3053 )
+
+[node name="LegUpperLeft" type="RigidBody2D" parent="BaseLeft"]
+position = Vector2( 44.2191, 1.36481 )
+rotation = -0.0799432
+collision_mask = 4
+physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
+angular_damp = 10.0
+
+[node name="Polygon2D" type="Polygon2D" parent="BaseLeft/LegUpperLeft"]
+position = Vector2( 0.231342, 0.274185 )
+rotation = 0.165856
+scale = Vector2( -0.2, 0.2 )
+z_index = -2
+offset = Vector2( -1252.13, -1083.45 )
+texture = ExtResource( 2 )
+polygon = PoolVector2Array( 1173.58, 1028.3, 1184.91, 1256.6, 1305.66, 1260.38, 1328.3, 1030.19 )
+uv = PoolVector2Array( 1173.58, 1028.3, 1184.91, 1256.6, 1305.66, 1260.38, 1328.3, 1030.19 )
+bones = [ NodePath("Base"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/Head"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft/ArmLowerLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight/ArmLowerRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft"), PoolRealArray( 1, 1, 1, 1 ), NodePath("Base/LegUpperLeft/LegLowerLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperRight/LegLowerRight"), PoolRealArray( 0, 0, 0, 0 ) ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BaseLeft/LegUpperLeft"]
+rotation = -0.000652641
+polygon = PoolVector2Array( 0.250482, -7.19156, -6.36303, -4.63791, -12.1046, 9.10236, -9.66216, 24.7388, -3.76252, 32.9349, 3.51175, 28.8907, 9.12234, 13.9047, 8.16809, -1.99749 )
+
+[node name="LegLowerLeft" type="RigidBody2D" parent="BaseLeft/LegUpperLeft"]
+position = Vector2( -1.85224, 28.5014 )
+rotation = -0.024101
+collision_mask = 4
+physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
+angular_damp = 10.0
+
+[node name="Polygon2D" type="Polygon2D" parent="BaseLeft/LegUpperLeft/LegLowerLeft"]
+position = Vector2( 0.00951004, 0.0109043 )
+rotation = 0.205052
+scale = Vector2( -0.2, 0.2 )
+z_index = -1
+offset = Vector2( -1249.26, -1223.33 )
+texture = ExtResource( 9 )
+polygon = PoolVector2Array( 1094.34, 1190.57, 1096.23, 1269.81, 1283.02, 1260.38, 1281.13, 1179.25 )
+uv = PoolVector2Array( 1094.34, 1190.57, 1096.23, 1269.81, 1283.02, 1260.38, 1281.13, 1179.25 )
+bones = [ NodePath("Base"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/Head"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft/ArmLowerLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight/ArmLowerRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft/LegLowerLeft"), PoolRealArray( 1, 1, 1, 1 ), NodePath("Base/LegUpperRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperRight/LegLowerRight"), PoolRealArray( 0, 0, 0, 0 ) ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BaseLeft/LegUpperLeft/LegLowerLeft"]
+position = Vector2( 0.439493, 0.309713 )
+rotation = 0.0207391
+polygon = PoolVector2Array( -3.38392, -3.30633, -4.78888, 1.89283, 2.78575, 5.85388, 14.9824, 7.61196, 21.9756, 10.7848, 25.1285, 9.0139, 18.3848, 0.637906, 14.6545, 1.01988, 5.38127, -3.63775 )
+
+[node name="LegUpperRight" type="RigidBody2D" parent="BaseLeft"]
+position = Vector2( 44.2105, 1.19068 )
+rotation = 0.580598
+collision_mask = 4
+physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
+angular_damp = 10.0
+
+[node name="Polygon2D" type="Polygon2D" parent="BaseLeft/LegUpperRight"]
+position = Vector2( 0.0762787, -0.00463867 )
+rotation = -1.15463
+scale = Vector2( -0.15, 0.15 )
+z_index = 2
+offset = Vector2( -1245.81, -1125.06 )
+texture = ExtResource( 3 )
+polygon = PoolVector2Array( 1141.51, 1158.49, 1381.13, 1339.62, 1481.13, 1243.4, 1283.02, 1033.96 )
+uv = PoolVector2Array( 1152.83, 1175.47, 1381.13, 1339.62, 1481.13, 1243.4, 1283.02, 1033.96 )
+bones = [ NodePath("Base"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/Head"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft/ArmLowerLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight/ArmLowerRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft/LegLowerLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperRight"), PoolRealArray( 1, 1, 1, 1 ), NodePath("Base/LegUpperRight/LegLowerRight"), PoolRealArray( 0, 0, 0, 0 ) ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BaseLeft/LegUpperRight"]
+z_index = 2
+polygon = PoolVector2Array( -3.36151, -6.14574, -7.72875, 3.31458, -4.88053, 18.6672, 5.35163, 30.2749, 11.3407, 32.9413, 15.3967, 24.5226, 13.2599, 8.1799, 6.48022, -5.74512 )
+
+[node name="LegLowerRight" type="RigidBody2D" parent="BaseLeft/LegUpperRight"]
+position = Vector2( 9.65838, 26.957 )
+rotation = -0.620641
+collision_mask = 4
+physics_material_override = ExtResource( 1 )
+gravity_scale = 1.35
+angular_damp = 10.0
+
+[node name="Polygon2D" type="Polygon2D" parent="BaseLeft/LegUpperRight/LegLowerRight"]
+position = Vector2( 0.00114441, -0.000793457 )
+rotation = 0.0799108
+scale = Vector2( -0.15, 0.15 )
+z_index = 1
+offset = Vector2( -1383.55, -1265.77 )
+texture = ExtResource( 10 )
+polygon = PoolVector2Array( 1122.64, 1230.19, 1128.3, 1345.28, 1439.62, 1326.42, 1435.85, 1192.45 )
+uv = PoolVector2Array( 1122.64, 1230.19, 1128.3, 1345.28, 1439.62, 1326.42, 1435.85, 1192.45 )
+bones = [ NodePath("Base"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/Head"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperLeft/ArmLowerLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/ArmUpperRight/ArmLowerRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperLeft/LegLowerLeft"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperRight"), PoolRealArray( 0, 0, 0, 0 ), NodePath("Base/LegUpperRight/LegLowerRight"), PoolRealArray( 1, 1, 1, 1 ) ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BaseLeft/LegUpperRight/LegLowerRight"]
+z_index = 1
+polygon = PoolVector2Array( -3.65612, -3.70531, -5.06419, 2.42781, 5.76641, 6.98809, 20.9096, 8.35032, 30.9047, 11.2789, 33.7273, 8.28268, 28.5169, 3.42452, 25.3827, -1.03082, 19.3748, -0.486938, 9.48653, -4.6317 )
+
+[node name="PinJoints" type="Node2D" parent="."]
+visible = false
+position = Vector2( 0.152695, 0 )
+z_index = 3
+
+[node name="base_head" type="PinJoint2D" parent="PinJoints"]
+position = Vector2( 37.5926, -59.1726 )
+rotation = 0.439788
+node_a = NodePath("../../Base")
+node_b = NodePath("../../Base/Head")
+
+[node name="base_armUpperLeft" type="PinJoint2D" parent="PinJoints"]
+position = Vector2( 27.6297, -41.689 )
+rotation = -0.114832
+node_a = NodePath("../../Base")
+node_b = NodePath("../../Base/ArmUpperLeft")
+
+[node name="armUpperLeft_armLowerLeft" type="PinJoint2D" parent="PinJoints"]
+position = Vector2( 30.95, -22.7687 )
+rotation = -0.633947
+node_a = NodePath("../../Base/ArmUpperLeft")
+node_b = NodePath("../../Base/ArmUpperLeft/ArmLowerLeft")
+
+[node name="base_armUpperRight" type="PinJoint2D" parent="PinJoints"]
+position = Vector2( 27.2337, -42.0744 )
+rotation = -0.124557
+node_a = NodePath("../../Base")
+node_b = NodePath("../../Base/ArmUpperRight")
+
+[node name="armUpperRight_armLowerRight" type="PinJoint2D" parent="PinJoints"]
+position = Vector2( 31.4495, -18.1337 )
+rotation = -0.939857
+node_a = NodePath("../../Base/ArmUpperRight")
+node_b = NodePath("../../Base/ArmUpperRight/ArmLowerRight")
+
+[node name="base_legUpperLeft" type="PinJoint2D" parent="PinJoints"]
+position = Vector2( -37.8716, -35.8242 )
+rotation = 0.0643843
+node_a = NodePath("../../Base")
+node_b = NodePath("../../Base/LegUpperLeft")
+
+[node name="legUpperLeft_legLowerLeft" type="PinJoint2D" parent="PinJoints"]
+position = Vector2( -38.2848, -7.24732 )
+rotation = 1.42538
+node_a = NodePath("../../Base/LegUpperLeft")
+node_b = NodePath("../../Base/LegUpperLeft/LegLowerLeft")
+
+[node name="base_legUpperRight" type="PinJoint2D" parent="PinJoints"]
+position = Vector2( -37.858, -35.9938 )
+rotation = -0.20668
+node_a = NodePath("../../Base")
+node_b = NodePath("../../Base/LegUpperRight")
+
+[node name="legUpperRight_legLowerRight" type="PinJoint2D" parent="PinJoints"]
+position = Vector2( -31.1608, -8.1476 )
+rotation = 3.03036
+node_a = NodePath("../../Base/LegUpperRight")
+node_b = NodePath("../../Base/LegUpperRight/LegLowerRight")
+
+[node name="PinJointsLeft" type="Node2D" parent="."]
+visible = false
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+z_index = 3
+
+[node name="base_head" type="PinJoint2D" parent="PinJointsLeft"]
+position = Vector2( 31.1894, -59.0446 )
+node_a = NodePath("../../BaseLeft")
+node_b = NodePath("../../BaseLeft/Head")
+
+[node name="base_armUpperLeft" type="PinJoint2D" parent="PinJointsLeft"]
+position = Vector2( 21.2197, -41.6873 )
+node_a = NodePath("../../BaseLeft")
+node_b = NodePath("../../BaseLeft/ArmUpperLeft")
+
+[node name="armUpperLeft_armLowerLeft" type="PinJoint2D" parent="PinJointsLeft"]
+position = Vector2( 24.5652, -22.7613 )
+node_a = NodePath("../../BaseLeft/ArmUpperLeft")
+node_b = NodePath("../../BaseLeft/ArmUpperLeft/ArmLowerLeft")
+
+[node name="base_armUpperRight" type="PinJoint2D" parent="PinJointsLeft"]
+position = Vector2( 20.9055, -42.0741 )
+node_a = NodePath("../../BaseLeft")
+node_b = NodePath("../../BaseLeft/ArmUpperRight")
+
+[node name="armUpperRight_armLowerRight" type="PinJoint2D" parent="PinJointsLeft"]
+position = Vector2( 25.0657, -18.1309 )
+node_a = NodePath("../../BaseLeft/ArmUpperRight")
+node_b = NodePath("../../BaseLeft/ArmUpperRight/ArmLowerRight")
+
+[node name="base_legUpperLeft" type="PinJoint2D" parent="PinJointsLeft"]
+position = Vector2( -44.2195, -35.8238 )
+node_a = NodePath("../../BaseLeft")
+node_b = NodePath("../../BaseLeft/LegUpperLeft")
+
+[node name="legUpperLeft_legLowerLeft" type="PinJoint2D" parent="PinJointsLeft"]
+position = Vector2( -44.6516, -7.25488 )
+node_a = NodePath("../../BaseLeft/LegUpperLeft")
+node_b = NodePath("../../BaseLeft/LegUpperLeft/LegLowerLeft")
+
+[node name="base_legUpperRight" type="PinJoint2D" parent="PinJointsLeft"]
+position = Vector2( -44.2136, -35.9689 )
+node_a = NodePath("../../BaseLeft")
+node_b = NodePath("../../BaseLeft/LegUpperRight")
+
+[node name="legUpperRight_legLowerRight" type="PinJoint2D" parent="PinJointsLeft"]
+position = Vector2( -37.5088, -8.1419 )
+node_a = NodePath("../../BaseLeft/LegUpperRight")
+node_b = NodePath("../../BaseLeft/LegUpperRight/LegLowerRight")
+
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
+visible = false
 position = Vector2( 0, -102.385 )
 
 [node name="Base" type="Bone2D" parent="Skeleton2D"]
@@ -515,64 +872,6 @@ position = Vector2( 29.0151, 0.0804558 )
 rotation = 1.682
 rest = Transform2D( -0.11097, 0.993824, -0.993824, -0.11097, 29.0151, 0.0804558 )
 default_length = 32.0
-
-[node name="PinJoints" type="Node2D" parent="."]
-visible = false
-z_index = 3
-
-[node name="base_head" type="PinJoint2D" parent="PinJoints"]
-position = Vector2( 41.3571, -56.7471 )
-rotation = 0.439788
-node_a = NodePath("../../Base")
-node_b = NodePath("../../Base/Head")
-
-[node name="base_armUpperLeft" type="PinJoint2D" parent="PinJoints"]
-position = Vector2( 30.493, -39.7587 )
-rotation = -0.114832
-node_a = NodePath("../../Base")
-node_b = NodePath("../../Base/ArmUpperLeft")
-
-[node name="armUpperLeft_armLowerLeft" type="PinJoint2D" parent="PinJoints"]
-position = Vector2( 32.8822, -20.7017 )
-rotation = -0.633947
-node_a = NodePath("../../Base/ArmUpperLeft")
-node_b = NodePath("../../Base/ArmUpperLeft/ArmLowerLeft")
-
-[node name="base_armUpperRight" type="PinJoint2D" parent="PinJoints"]
-position = Vector2( 30.1513, -40.2243 )
-rotation = -0.124557
-node_a = NodePath("../../Base")
-node_b = NodePath("../../Base/ArmUpperRight")
-
-[node name="armUpperRight_armLowerRight" type="PinJoint2D" parent="PinJoints"]
-position = Vector2( 33.1347, -16.1114 )
-rotation = -0.939857
-node_a = NodePath("../../Base/ArmUpperRight")
-node_b = NodePath("../../Base/ArmUpperRight/ArmLowerRight")
-
-[node name="base_legUpperLeft" type="PinJoint2D" parent="PinJoints"]
-position = Vector2( -35.182, -37.0773 )
-rotation = 0.0643843
-node_a = NodePath("../../Base")
-node_b = NodePath("../../Base/LegUpperLeft")
-
-[node name="legUpperLeft_legLowerLeft" type="PinJoint2D" parent="PinJoints"]
-position = Vector2( -37.0221, -8.54659 )
-rotation = 1.42538
-node_a = NodePath("../../Base/LegUpperLeft")
-node_b = NodePath("../../Base/LegUpperLeft/LegLowerLeft")
-
-[node name="base_legUpperRight" type="PinJoint2D" parent="PinJoints"]
-position = Vector2( -35.3228, -37.4718 )
-rotation = -0.20668
-node_a = NodePath("../../Base")
-node_b = NodePath("../../Base/LegUpperRight")
-
-[node name="legUpperRight_legLowerRight" type="PinJoint2D" parent="PinJoints"]
-position = Vector2( -29.8641, -9.04191 )
-rotation = 3.03036
-node_a = NodePath("../../Base/LegUpperRight")
-node_b = NodePath("../../Base/LegUpperRight/LegLowerRight")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"

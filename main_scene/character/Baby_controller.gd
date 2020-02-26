@@ -38,6 +38,7 @@ var isFlip := false		# default toward right
 # Get nodes
 onready var anim_player = get_node("AnimationPlayer")
 onready var skeleton = get_node("Skeleton2D")
+onready var pos_cam_follow = get_node("Position2D")
 
 
 func _ready():
@@ -157,6 +158,9 @@ func _process(delta):
 		isBlend = false
 		isMoving = false
 		anim_player.play("Idle")
+	
+	# Position (camera follow) should sync to target rigid body
+	pos_cam_follow.set_position(rigid_list_target[0].get_position())
 
 
 """ Swapping two tree of rigid bodies, achieving 
@@ -178,6 +182,7 @@ func flip(direction):
 		rigid_angle_constraints_target = rigid_angle_constraints_l
 		# flip animation
 		skeleton.set_scale(Vector2(-1, 1))
+		
 		
 	elif direction == "right":
 		rigid_list[0].set_position(rigid_list_l[0].get_position())

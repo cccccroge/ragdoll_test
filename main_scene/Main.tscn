@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://main_scene/character/Baby.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main_scene/obstacles/Box.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/Boyu/Boyu_R_HAND.png" type="Texture" id=9]
 [ext_resource path="res://assets/Boyu/Boyu_L_HAND.png" type="Texture" id=10]
 [ext_resource path="res://main_scene/obstacles/Sofa/Sofa.tscn" type="PackedScene" id=11]
+[ext_resource path="res://main_scene/obstacles/Ted/Ted.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1540.59, 91.3183 )
@@ -247,6 +248,9 @@ node_b = NodePath("../right_hand")
 [node name="Sofa" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1299.4, 857.758 )
 z_index = -1
+
+[node name="Ted" parent="." instance=ExtResource( 12 )]
+position = Vector2( 1794.51, 875.864 )
 
 [node name="Baby" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1308.37, 621.016 )

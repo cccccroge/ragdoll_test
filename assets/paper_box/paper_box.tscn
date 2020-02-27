@@ -7,7 +7,6 @@
 [ext_resource path="res://assets/paper_box/front_box.png" type="Texture" id=5]
 
 [node name="paper_box" type="Node2D"]
-scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 4 )
 
 [node name="main_body" type="RigidBody2D" parent="."]
@@ -48,7 +47,6 @@ polygon = PoolVector2Array( -421.469, -254.587, -462.882, -167.88, -369.057, -22
 [node name="left_wing" type="RigidBody2D" parent="."]
 position = Vector2( -191.462, -183.558 )
 rotation = -0.533172
-scale = Vector2( 1, 1 )
 z_index = -1
 collision_layer = 4
 collision_mask = 4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://main_scene/character/Baby.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main_scene/obstacles/Box.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/Boyu/Boyu_L_HAND.png" type="Texture" id=10]
 [ext_resource path="res://main_scene/obstacles/Sofa/Sofa.tscn" type="PackedScene" id=11]
 [ext_resource path="res://main_scene/obstacles/Ted/Ted.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/paper_box/paper_box.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1540.59, 91.3183 )
@@ -253,5 +254,14 @@ z_index = -1
 position = Vector2( 1794.51, 875.864 )
 
 [node name="Baby" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1308.37, 621.016 )
+position = Vector2( 2450.17, 365.387 )
 z_index = 1
+
+[node name="Camera2D" parent="Baby/Position2D" index="0"]
+zoom = Vector2( 1, 1 )
+
+[node name="paper_box" parent="." instance=ExtResource( 13 )]
+position = Vector2( 2330.53, 830.63 )
+scale = Vector2( 1, 1 )
+
+[editable path="Baby"]

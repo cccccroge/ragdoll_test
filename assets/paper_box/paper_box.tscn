@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/paper_box/box.png" type="Texture" id=1]
+[ext_resource path="res://assets/paper_box/left.png" type="Texture" id=2]
+[ext_resource path="res://assets/paper_box/right.png" type="Texture" id=3]
+[ext_resource path="res://assets/paper_box/paper_box.gd" type="Script" id=4]
+[ext_resource path="res://assets/paper_box/front_box.png" type="Texture" id=5]
+
+[node name="paper_box" type="Node2D"]
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 4 )
+
+[node name="main_body" type="RigidBody2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="main_body"]
+position = Vector2( 146.059, 84.0947 )
+texture = ExtResource( 1 )
+
+[node name="Sprite2" type="Sprite" parent="main_body"]
+position = Vector2( 2.77972, 4.6329 )
+z_index = 6
+texture = ExtResource( 5 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="main_body"]
+rotation = 0.00177155
+polygon = PoolVector2Array( -229.908, -161.33, -232.772, 169.456, 248.371, 168.024, 235.512, -156.803, 200.35, -197.239, 216.867, 140.816, -208.429, 142.248, -196.978, -198.997 )
+
+[node name="right_wing" type="RigidBody2D" parent="."]
+position = Vector2( 241.864, -160.891 )
+rotation = -1.80982
+z_index = -1
+collision_layer = 4
+collision_mask = 4
+
+[node name="Sprite" type="Sprite" parent="right_wing"]
+position = Vector2( 381.844, 246.793 )
+texture = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="right_wing"]
+position = Vector2( 389.5, 243.2 )
+polygon = PoolVector2Array( -421.469, -254.587, -462.882, -167.88, -369.057, -227.41, -308.233, -302.47 )
+
+[node name="left_wing" type="RigidBody2D" parent="."]
+position = Vector2( -191.462, -183.558 )
+rotation = -0.533172
+scale = Vector2( 1, 1 )
+z_index = -1
+collision_layer = 4
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="left_wing"]
+position = Vector2( -165.023, 216.593 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="left_wing"]
+position = Vector2( -27.7711, -23.3268 )
+polygon = PoolVector2Array( -112.035, -72.1698, -68.0223, -6.15076, 71.0577, 51.0657, 58.7341, 0.0110168 )
+
+[node name="left" type="PinJoint2D" parent="."]
+position = Vector2( -201.312, -175.905 )
+node_a = NodePath("../main_body")
+node_b = NodePath("../left_wing")
+
+[node name="right" type="PinJoint2D" parent="."]
+position = Vector2( 211.055, -160.793 )
+node_a = NodePath("../right_wing")
+node_b = NodePath("../main_body")

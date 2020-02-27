@@ -22,13 +22,13 @@ var bone2rigid_rot_list_target
 # Angle constraints
 export(Array, Array, int) var rigid_angle_constraints := [
 	[0, 0], [-22, 40], # Base & Head, Base's angles are meaningless, just for alignment
-	[-70, 90], [-80, 60], [-80, 80], [-68, 57], # Arm left/right
-	[-75, 80], [-80, 48], [-15, 130], [-130, 5]	# Leg left/right
+	[-70, 90], [-80, 80], [-75, 80], [-15, 130],	# Upper left/right arm/leg
+	[-80, 60], [-68, 57], [-80, 48], [-130, 5]		# Lower left/right arm/leg
 ]
 export(Array, Array, int) var rigid_angle_constraints_l := [
 	[0, 0], [-40, 16], # Base & Head, Base's angles are meaningless, just for alignment
-	[-55, 90], [-40, 75], [-77, 75], [-50, 72], # Arm left/right
-	[-90, 63], [-53, 70], [-70, 80], [-77, 50]	# Leg left/right
+	[-55, 90], [-77, 75], [-90, 63], [-70, 80],		# Upper left/right arm/leg
+	[-40, 75], [-50, 72], [-53, 70], [-77, 50]		# Lower left/right arm/leg
 ]
 var rigid_angle_constraints_target
 
@@ -149,10 +149,14 @@ func _process(delta):
 			flip("left")
 			isFlip = true
 		anim_player.play("Crawl")
-	elif Input.is_action_just_pressed("character_move_up"):
+	elif Input.is_action_pressed("character_move_up"):
 		isBlend = true
 		isMoving = true
 		anim_player.play("Idle")
+	elif Input.is_action_pressed("character_grab"):
+		isBlend = true
+		isMoving = true
+		anim_player.play("Grab")
 		
 	else:
 		isBlend = false

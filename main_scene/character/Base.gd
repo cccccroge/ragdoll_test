@@ -3,6 +3,7 @@ extends RigidBody2D
 # Movement
 export var SPEED = 10
 export var JUMP_SPEED = 15
+export var GRAB_PUSH = 50
 
 
 func _integrate_forces(state):
@@ -21,5 +22,7 @@ func _integrate_forces(state):
 		f.x -= SPEED
 	elif Input.is_action_just_pressed("character_move_up"):
 		f.y -= SPEED
+	elif Input.is_action_pressed("character_grab"):
+		f.x += (-GRAB_PUSH if get_parent().isFlip else GRAB_PUSH)
 	
 	apply_impulse(Vector2(0, 0), f)

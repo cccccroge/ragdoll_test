@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cloth_box.png-b802e94bf5c54585ce4f59755f90ea9c.stex"
+path="res://.import/baloon.png-bd78e888d9d26c6902af427589a8cb11.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cloth_box.png"
-dest_files=[ "res://.import/cloth_box.png-b802e94bf5c54585ce4f59755f90ea9c.stex" ]
+source_file="res://assets/baloon/baloon.png"
+dest_files=[ "res://.import/baloon.png-bd78e888d9d26c6902af427589a8cb11.stex" ]
 
 [params]
 

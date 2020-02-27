@@ -1,17 +1,18 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://main_scene/character/Baby.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main_scene/obstacles/Box.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/baby_bed/back_fence.png" type="Texture" id=3]
 [ext_resource path="res://assets/baby_bed/front_fence.png" type="Texture" id=4]
 [ext_resource path="res://assets/baby_bed/right_fence.png" type="Texture" id=5]
-[ext_resource path="res://assets/cloth_box.png" type="Texture" id=6]
+[ext_resource path="res://main_scene/obstacles/Cloth_box/Cloth_box.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/Boyu/Boyu_head.png" type="Texture" id=7]
 [ext_resource path="res://assets/Boyu/Boyu_body.png" type="Texture" id=8]
 [ext_resource path="res://assets/Boyu/Boyu_R_HAND.png" type="Texture" id=9]
 [ext_resource path="res://assets/Boyu/Boyu_L_HAND.png" type="Texture" id=10]
 [ext_resource path="res://main_scene/obstacles/Sofa/Sofa.tscn" type="PackedScene" id=11]
 [ext_resource path="res://main_scene/obstacles/Ted/Ted.tscn" type="PackedScene" id=12]
+[ext_resource path="res://main_scene/obstacles/Poo/Poo.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1540.59, 91.3183 )
@@ -160,19 +161,8 @@ rotation = -0.00823909
 position = Vector2( 850.803, 261.6 )
 rotation = -0.564795
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2( 777.771, 910.805 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="RigidBody2D"]
-position = Vector2( 3.7619, 38.4166 )
-scale = Vector2( 0.526849, 0.681347 )
-texture = ExtResource( 6 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D"]
-polygon = PoolVector2Array( -86.7912, -47.9579, -74.2476, 25.2132, 70.8402, 23.9589, 78.3663, -37.0867, 82.9657, -36.2505, 85.8925, -50.8847, -8.18457, -53.3934, -92.6449, -51.7209, -92.6449, -42.1042, -89.2999, -34.578, -85.5369, -34.578, -85.955, -34.9961, -85.955, -34.9961 )
+[node name="Cloth_box" parent="." instance=ExtResource( 6 )]
+position = Vector2( 840.494, 915.5 )
 
 [node name="boyu" type="Position2D" parent="."]
 position = Vector2( 380.802, 667.99 )
@@ -252,6 +242,23 @@ z_index = -1
 [node name="Ted" parent="." instance=ExtResource( 12 )]
 position = Vector2( 1794.51, 875.864 )
 
+[node name="Poo_group" type="Node2D" parent="."]
+
+[node name="Poo" parent="Poo_group" instance=ExtResource( 13 )]
+position = Vector2( 2059.66, 916.969 )
+
+[node name="Poo2" parent="Poo_group" instance=ExtResource( 13 )]
+position = Vector2( 2162.82, 882.232 )
+rotation = 0.624533
+
+[node name="Poo3" parent="Poo_group" instance=ExtResource( 13 )]
+position = Vector2( 2087.03, 803.284 )
+rotation = -0.62216
+
+[node name="Poo4" parent="Poo_group" instance=ExtResource( 13 )]
+position = Vector2( 2277.55, 807.495 )
+rotation = 0.552962
+
 [node name="Baby" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1308.37, 621.016 )
+position = Vector2( 481.837, 692.067 )
 z_index = 1
